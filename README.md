@@ -1,2 +1,19 @@
-# portfolio
-My personal portfolio website. Built from scratch with React to practice clean architecture and reusable components.
+# Portfolio Website
+
+Personal portfolio built with React, TypeScript, Vite, and Tailwind v3.
+
+---
+
+## Tech Stack
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+
+---
+
+## Setup
+
+```bash
+npm install
+npm run dev
