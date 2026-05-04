@@ -1,3 +1,72 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* #region */
+/* #endregion */
+
+@layer base{
+    :root{
+    font-family: 'Courier New', Courier, monospace;
+    --base-color: 247 247 217;
+    }
+
+    body{
+        color: rgb(var(--base-color));
+        background: black
+    }
+}
+
+@layer components{
+    /* #region Content Width per Breakpoint */
+    .content-width {
+        @apply mx-auto;
+
+        /* Base (mobile first) */
+        max-width: 360px;
+    }
+
+    /* sm (≥ 640px) */
+    @media (min-width: 640px) {
+        .content-width { max-width: 576px; }
+    }
+
+    /* md (≥ 768px) */
+    @media (min-width: 768px) {
+        .content-width { max-width: 730px; }
+    }
+
+    /* lg and above (≥ 1024px) */
+    @media (min-width: 1024px) {
+        .content-width { max-width: 930px; }
+    }
+    /* #endregion */
+    
+}
+
+@layer utilities{
+    .col-xy-center {
+        @apply flex flex-col justify-center items-center;
+    }
+
+    .f-col {
+        @apply flex flex-col;
+    }
+
+    .f-row {
+        @apply flex flex-row;
+    }
+    /* #region Base Color Utilities */
+    .base-text {
+        color: rgb(var(--base-color));
+    }
+
+    .base-border {
+        border-color: rgb(var(--base-color));
+    }
+
+    .base-bg {
+        background-color: rgb(var(--base-color));
+    }
+    /* #endregion */
+}

@@ -1,10 +1,8 @@
 //src/components/sections/RelevantExperiences.tsx
 export default function RelevantExperiences(){
     return(
-        <div>
-            <section className="min-h-screen 
-            border border-blue-900
-            flex justify-center items-center">Relevant Experiences Section</section>
-        </div>
+        <section>
+            <div className="col-xy-center min-h-screen content-width border base-border">Relevant Experiences Section</div>
+        </section>
     )
 }

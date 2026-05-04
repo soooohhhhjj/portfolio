@@ -1,10 +1,8 @@
 //src/components/sections/Skills&Tools.tsx
 export default function SkillsNTools(){
     return(
-        <div>
-            <section className="min-h-screen 
-            border border-gray-700
-            flex justify-center items-center">Skills & Tools Section</section>
-        </div>
+        <section>
+            <div className="col-xy-center min-h-screen content-width border base-border">Skills & Tools Section</div>
+        </section>
     )
 }

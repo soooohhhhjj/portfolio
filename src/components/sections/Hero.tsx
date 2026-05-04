@@ -1,10 +1,8 @@
 //src/components/sections/Hero.tsx
 export default function Hero(){
     return(
-        <div>
-            <section className="min-h-screen 
-            border border-amber-600
-            flex justify-center items-center">Hero Section</section>
-        </div>
+        <section>
+            <div className="col-xy-center min-h-screen content-width border base-border">Hero Section</div>
+        </section>
     )
 }

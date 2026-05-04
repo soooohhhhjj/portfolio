@@ -16,11 +16,10 @@ export default function App() {
   useLenis();
 
   return (
-    <div className="bg-black text-white px-9 
-    flex flex-col gap-6">
+    <div className="f-col gap-6 px-3 sm:px-0">
     <Navbar />
 
-    <main className="flex flex-col gap-6">
+    <main className="f-col gap-6">
       <Hero/>
       <RelevantExperiences/>
       <SkillsNTools/>
