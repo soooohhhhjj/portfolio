@@ -12,11 +12,15 @@ import Footer from "./components/layout/Footer"
 //Import Hooks
 import { useLenis } from "./hooks/useLenis";
 
+import { StarfieldBackground } from "./components/background/StarfieldBackground";
+
 export default function App() {
   useLenis();
 
   return (
     <div className="f-col gap-6 px-3 sm:px-0">
+    <StarfieldBackground />
+
     <Navbar />
 
     <main className="f-col gap-6">
