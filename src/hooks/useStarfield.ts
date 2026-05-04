@@ -8,10 +8,19 @@ import {
 } from '../utils/starfield';
 import { lenis } from '../lib/lenis';
 
+// Tuning constants for the starfield
+const SCROLL_LERP_FACTOR = 0.08;
+const SCROLL_CLAMP = 150;
+const SCROLL_SPEED_MULTIPLIER = 0.6;
+const DIAGONAL_X = -0.5;
+const DIAGONAL_Y = 0.5;
+const MAX_DELTA = 0.05;
+const TWO_PI = Math.PI * 2;
+
 /**
-  * Custom hook that manages the lifecycle, rendering, and logic of the starfield animation.
-  * It attaches to a canvas element and uses requestAnimationFrame for efficient drawing.
-  */
+ * Custom hook that manages the lifecycle, rendering, and logic of the starfield animation.
+ * It attaches to a canvas element and uses requestAnimationFrame for efficient drawing.
+ */
 export function useStarfield(canvasRef: RefObject<HTMLCanvasElement | null>) {
     const starsRef = useRef<Star[]>([]);
     const viewportRef = useRef<{ width: number; height: number } | null>(null);
@@ -96,16 +105,21 @@ export function useStarfield(canvasRef: RefObject<HTMLCanvasElement | null>) {
         }, 500);
 
         let animationFrame = 0;
-        const TWO_PI = Math.PI * 2; // Pre-calculate for performance inside the loop
+        let lastTime = 0;
         
         // The main rendering loop that runs ~60 times per second
-        const animate = () => {
+        const animate = (timestamp: number) => {
             animationFrame = window.requestAnimationFrame(animate);
+
+            // Compute delta time for framerate-independent rendering
+            if (!lastTime) lastTime = timestamp;
+            const delta = Math.min((timestamp - lastTime) / 1000, MAX_DELTA);
+            lastTime = timestamp;
+            
+            timeRef.current += delta;
 
             const width = canvas.width;
             const height = canvas.height;
-
-            timeRef.current += 0.016;
       
             let currentScrollVelocity = lenis?.velocity || 0;
             
@@ -114,14 +128,19 @@ export function useStarfield(canvasRef: RefObject<HTMLCanvasElement | null>) {
                 currentScrollVelocity = 0;
             } else {
                 // Clamp the max velocity to prevent chaotic spikes
-                currentScrollVelocity = Math.max(-150, Math.min(150, currentScrollVelocity));
+                currentScrollVelocity = Math.max(-SCROLL_CLAMP, Math.min(SCROLL_CLAMP, currentScrollVelocity));
             }
 
             // Smoothly interpolate the visual scroll influence so it eases in and out
-            scrollInfluenceRef.current += (currentScrollVelocity - scrollInfluenceRef.current) * 0.08;
+            scrollInfluenceRef.current += (currentScrollVelocity - scrollInfluenceRef.current) * SCROLL_LERP_FACTOR;
 
             context.fillStyle = '#000000';
             context.fillRect(0, 0, width, height);
+
+            // Set star color once outside the loop for extreme efficiency
+            context.fillStyle = '#ffffff';
+            
+            const absScroll = Math.abs(scrollInfluenceRef.current);
 
             starsRef.current.forEach((star) => {
                 // Calculate the pulsing opacity effect
@@ -129,19 +148,20 @@ export function useStarfield(canvasRef: RefObject<HTMLCanvasElement | null>) {
                     ? Math.sin(timeRef.current * star.twinkleSpeed + star.twinkleOffset) * 0.2 + 0.8
                     : 1;
 
-                context.fillStyle = `rgba(255,255,255,${star.opacity * twinkle})`;
+                // Adjust transparency per star without allocating strings
+                context.globalAlpha = star.opacity * twinkle;
                 context.beginPath();
                 context.arc(star.x, star.y, star.size, 0, TWO_PI);
                 context.fill();
 
                 // Default slow diagonal drift
-                let deltaX = -0.5 * star.speed;
-                let deltaY = 0.5 * star.speed;
+                let deltaX = DIAGONAL_X * star.speed;
+                let deltaY = DIAGONAL_Y * star.speed;
 
                 // When scrolling quickly, stop diagonal drift and respond to scroll velocity instead
-                if (Math.abs(scrollInfluenceRef.current) > 0.1) {
+                if (absScroll > 0.1) {
                     deltaX = 0;
-                    deltaY = -scrollInfluenceRef.current * star.speed * 0.6;
+                    deltaY = -scrollInfluenceRef.current * star.speed * SCROLL_SPEED_MULTIPLIER;
                 }
 
                 star.x += deltaX;
@@ -155,17 +175,33 @@ export function useStarfield(canvasRef: RefObject<HTMLCanvasElement | null>) {
                 if (star.y < 0) star.y += height;
                 else if (star.y > height) star.y -= height;
             });
+            
+            // Reset globalAlpha to 1 for the background fill in the next frame
+            context.globalAlpha = 1;
         };
 
-        animate();
+        animationFrame = window.requestAnimationFrame(animate);
+
+        // Pause animation when the user switches to a different tab
+        const handleVisibilityChange = () => {
+            if (document.hidden) {
+                window.cancelAnimationFrame(animationFrame);
+            } else {
+                lastTime = 0; // Reset lastTime so we don't get a huge delta jump
+                animationFrame = window.requestAnimationFrame(animate);
+            }
+        };
+
         window.addEventListener('resize', resizeCanvas);
         window.addEventListener('orientationchange', resizeCanvas);
+        document.addEventListener('visibilitychange', handleVisibilityChange);
 
         return () => {
             clearTimeout(initTimer);
             window.cancelAnimationFrame(animationFrame);
             window.removeEventListener('resize', resizeCanvas);
             window.removeEventListener('orientationchange', resizeCanvas);
+            document.removeEventListener('visibilitychange', handleVisibilityChange);
         };
     }, [canvasRef]);
 }
