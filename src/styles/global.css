@@ -15,6 +15,23 @@
         color: rgb(var(--base-color));
         background: black
     }
+
+    /* #region Remove Scrollbar */
+    /* Chrome, Safari, Edge */
+    *::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Firefox */
+    * {
+        scrollbar-width: none;
+    }
+
+    /* IE / old Edge */
+    * {
+        -ms-overflow-style: none;
+    }
+    /* #endregion */
 }
 
 @layer components{
