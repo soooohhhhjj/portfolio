@@ -1,9 +1,27 @@
+//src/App.tsx
+
+//Import Sections
+import Hero from "./components/sections/Hero"
+import RelevantExperiences from "./components/sections/RelevantExperiences"
+import SkillsNTools from "./components/sections/Skills&Tools"
+
+//Import Layouts
+import Navbar from "./components/layout/Navbar"
+import Footer from "./components/layout/Footer"
+
 export default function App() {
   return (
-    <div className="flex items-center justify-center h-screen bg-black">
-      <div className="text-3xl font-bold text-white">
-        soooohhhhjj-portfolio (Base version)
-      </div>
+    <div className="bg-black text-white px-9 
+    flex flex-col gap-6">
+    <Navbar />
+
+    <main className="flex flex-col gap-6">
+      <Hero/>
+      <RelevantExperiences/>
+      <SkillsNTools/>
+    </main>
+
+    <Footer/>
     </div>
   )
 }
