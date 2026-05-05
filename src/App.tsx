@@ -21,15 +21,14 @@ import { SLIDE_TRANSITION } from "./lib/animations";
 
 export default function App() {
   useLenis();
-  const { welcomeDone, handleWelcomeDone } = useIntroSequence();
+  const { welcomeVisible, contentVisible, starMode, handleWelcomeDone } = useIntroSequence();
 
   return (
     <div className="f-col gap-6 px-3 sm:px-0 overflow-x-hidden">
-      <StarfieldBackground />
+      <StarfieldBackground mode={starMode} />
 
-      {/* Welcome — slides up and out */}
       <AnimatePresence>
-        {!welcomeDone && (
+        {welcomeVisible && (
           <motion.div
             className="fixed inset-0 z-50"
             exit={{ y: '-100vh' }}
@@ -41,20 +40,19 @@ export default function App() {
       </AnimatePresence>
 
       <motion.div
-      className="f-col gap-6"
+        className="f-col gap-6"
         initial={{ y: '100vh' }}
-        animate={{ y: welcomeDone ? 0 : '100vh' }}
-        transition={SLIDE_TRANSITION}>
+        animate={{ y: contentVisible ? 0 : '100vh' }}
+        transition={SLIDE_TRANSITION}
+      >
         <Navbar />
-
         <main className="f-col gap-6">
-          <Hero/>
-          <RelevantExperiences/>
-          <SkillsNTools/>
+          <Hero />
+          <RelevantExperiences />
+          <SkillsNTools />
         </main>
-
-        <Footer/>
+        <Footer />
       </motion.div>
     </div>
-  )
+  );
 }

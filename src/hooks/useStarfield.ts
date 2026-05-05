@@ -21,12 +21,21 @@ const TWO_PI = Math.PI * 2;
  * Custom hook that manages the lifecycle, rendering, and logic of the starfield animation.
  * It attaches to a canvas element and uses requestAnimationFrame for efficient drawing.
  */
-export function useStarfield(canvasRef: RefObject<HTMLCanvasElement | null>) {
+export function useStarfield(canvasRef: RefObject<HTMLCanvasElement | null>, mode: 'normal' | 'cinematic' = 'normal') {
     const starsRef = useRef<Star[]>([]);
     const viewportRef = useRef<{ width: number; height: number } | null>(null);
     const twinkleEnabledRef = useRef(true);
     const timeRef = useRef(0);
     const scrollInfluenceRef = useRef(0);
+    const cinematicVelocityRef = useRef(0);
+    const modeRef = useRef(mode);
+
+    useEffect(() => {
+        modeRef.current = mode;
+        if (mode === 'cinematic') {
+            cinematicVelocityRef.current = -12;
+        }
+    }, [mode]);
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -142,6 +151,11 @@ export function useStarfield(canvasRef: RefObject<HTMLCanvasElement | null>) {
             
             const absScroll = Math.abs(scrollInfluenceRef.current);
 
+            cinematicVelocityRef.current *= 0.98;
+            if (Math.abs(cinematicVelocityRef.current) < 0.05) {
+                cinematicVelocityRef.current = 0;
+            }
+
             starsRef.current.forEach((star) => {
                 // Calculate the pulsing opacity effect
                 const twinkle = twinkleEnabledRef.current
@@ -158,8 +172,13 @@ export function useStarfield(canvasRef: RefObject<HTMLCanvasElement | null>) {
                 let deltaX = DIAGONAL_X * star.speed;
                 let deltaY = DIAGONAL_Y * star.speed;
 
-                // When scrolling quickly, stop diagonal drift and respond to scroll velocity instead
-                if (absScroll > 0.1) {
+                // Cinematic mode simulates the camera rapidly sliding upwards.
+                // We freeze horizontal movement (deltaX = 0) and apply a decaying vertical velocity.
+                // When mode reverts to 'normal', the stars abruptly snap back to diagonal drift.
+                if (modeRef.current === 'cinematic') {
+                    deltaX = 0;
+                    deltaY = cinematicVelocityRef.current * star.speed;
+                } else if (absScroll > 0.1) {
                     deltaX = 0;
                     deltaY = -scrollInfluenceRef.current * star.speed * SCROLL_SPEED_MULTIPLIER;
                 }

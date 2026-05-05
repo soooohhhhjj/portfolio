@@ -7,11 +7,15 @@ import { useStarfield } from '../../hooks/useStarfield';
  * Renders a full-screen, fixed canvas that displays the dynamic starfield animation.
  * The actual rendering and logic are fully delegated to the custom `useStarfield` hook.
  */
-export function StarfieldBackground() {
+interface StarfieldBackgroundProps {
+  mode?: 'normal' | 'cinematic';
+}
+
+export function StarfieldBackground({ mode = 'normal' }: StarfieldBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   
   // Attach the hook to our canvas element
-  useStarfield(canvasRef);
+  useStarfield(canvasRef, mode);
 
   return (
     <canvas
