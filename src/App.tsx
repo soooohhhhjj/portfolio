@@ -1,9 +1,12 @@
 //src/App.tsx
 
 //Import Sections
+import Welcome from "./components/welcome/Welcome"
 import Hero from "./components/sections/Hero"
 import RelevantExperiences from "./components/sections/RelevantExperiences"
 import SkillsNTools from "./components/sections/Skills&Tools"
+
+import { StarfieldBackground } from "./components/background/StarfieldBackground";
 
 //Import Layouts
 import Navbar from "./components/layout/Navbar"
@@ -11,25 +14,47 @@ import Footer from "./components/layout/Footer"
 
 //Import Hooks
 import { useLenis } from "./hooks/useLenis";
+import { useIntroSequence } from "./hooks/useIntroSequence";
 
-import { StarfieldBackground } from "./components/background/StarfieldBackground";
+import { motion, AnimatePresence } from "framer-motion";
+import { SLIDE_TRANSITION } from "./lib/animations";
 
 export default function App() {
   useLenis();
+  const { welcomeDone, handleWelcomeDone } = useIntroSequence();
 
   return (
-    <div className="f-col gap-6 px-3 sm:px-0">
-    <StarfieldBackground />
+    <div className="f-col gap-6 px-3 sm:px-0 overflow-x-hidden">
+      <StarfieldBackground />
 
-    <Navbar />
+      {/* Welcome — slides up and out */}
+      <AnimatePresence>
+        {!welcomeDone && (
+          <motion.div
+            className="fixed inset-0 z-50"
+            exit={{ y: '-100vh' }}
+            transition={SLIDE_TRANSITION}
+          >
+            <Welcome onDone={handleWelcomeDone} />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-    <main className="f-col gap-6">
-      <Hero/>
-      <RelevantExperiences/>
-      <SkillsNTools/>
-    </main>
+      <motion.div
+      className="f-col gap-6"
+        initial={{ y: '100vh' }}
+        animate={{ y: welcomeDone ? 0 : '100vh' }}
+        transition={SLIDE_TRANSITION}>
+        <Navbar />
 
-    <Footer/>
+        <main className="f-col gap-6">
+          <Hero/>
+          <RelevantExperiences/>
+          <SkillsNTools/>
+        </main>
+
+        <Footer/>
+      </motion.div>
     </div>
   )
 }
