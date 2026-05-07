@@ -5,7 +5,16 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+        fontFamily: {
+            anta: ['Anta', 'sans-serif'],
+            blinker: ['Blinker', 'sans-serif'],
+            bruno: ['"Bruno Ace SC"', 'sans-serif'],
+            jura: ['Jura', 'sans-serif'],
+            michroma: ['Michroma', 'sans-serif'],
+            zendots: ['ZenDots', 'sans-serif'],
+        },
+    },
   },
   plugins: [],
 }

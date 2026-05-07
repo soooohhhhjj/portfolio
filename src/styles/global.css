@@ -5,10 +5,43 @@
 /* #region */
 /* #endregion */
 
+/* #region Fonts Import */
+@font-face{
+    font-family: 'Anta';
+    src: url('/fonts/Anta-Regular.woff2') format('woff2');
+    font-display: swap;
+}
+@font-face{
+    font-family: 'Blinker';
+    src: url('/fonts/Blinker-ExtraLight.woff2') format('woff2');
+    font-display: swap;
+}
+@font-face{
+    font-family: 'Bruno Ace SC';
+    src: url('/fonts/BrunoAceSC-Regular.woff2') format('woff2');
+    font-display: swap;
+}
+@font-face{
+    font-family: 'Jura';
+    src: url('/fonts/Jura-VariableFont_wght.woff2') format('woff2');
+    font-display: swap;
+}
+@font-face{
+    font-family: 'Michroma';
+    src: url('/fonts/Michroma-Regular.woff2') format('woff2');
+    font-display: swap;
+}
+@font-face{
+    font-family: 'ZenDots';
+    src: url('/fonts/ZenDots-Regular.woff2') format('woff2');
+    font-display: swap;
+}
+/* #endregion */
+
 @layer base{
     :root{
-    font-family: 'Courier New', Courier, monospace;
     --base-color: 247 247 217;
+    line-height: 1;
     }
 
     body{
@@ -73,13 +106,18 @@
     .f-row {
         @apply flex flex-row;
     }
+
+    .f-row-sb {
+        @apply flex flex-row justify-between;
+    }
     /* #region Base Color Utilities */
     .base-text {
         color: rgb(var(--base-color));
     }
 
     .base-border {
-        border-color: rgb(var(--base-color));
+        border-color: rgb(var(--base-color) / 0.5); /* 50% opacity */
+        border-width: 0.2px;
     }
 
     .base-bg {

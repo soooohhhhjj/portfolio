@@ -1,0 +1,36 @@
+
+
+:root{
+    --hire-text-color: #109c52;
+}
+
+.icon-text {
+    text-shadow: 0 0 10px rgba(206, 226, 252, 0.432);
+    -webkit-text-stroke: 1px;
+}
+
+.hire-text {
+    color: var(--hire-text-color);
+    text-transform: uppercase;
+    -webkit-text-stroke: .8px;   
+}
+
+.animation-pulse {
+    animation: hire-status-pulse 3.2s ease-in-out infinite;
+}
+
+.hire-group:hover .animation-pulse {
+    animation: none;
+    opacity: 1;
+}
+
+@keyframes hire-status-pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.60;
+    }
+}
+
+
