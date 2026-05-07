@@ -1,5 +1,6 @@
 import { ModalOverlay } from './ModalOverlay';
 import { GridBackground } from './GridBackground';
+import { AnimatedCloseIcon } from './AnimatedCloseIcon';
 
 interface HireModalProps {
   isOpen: boolean;
@@ -16,12 +17,12 @@ export function HireModal({ isOpen, onClose }: HireModalProps) {
       <div className="relative pt-20 pb-8">
         <button
           type="button"
-          className="absolute top-6 right-0 font-jura uppercase tracking-[0.16rem]
+          className="group absolute top-6 right-0 font-jura uppercase tracking-[0.16rem]
             bg-transparent border-0 base-text cursor-pointer"
           onClick={onClose}
           aria-label="Close modal"
         >
-          Close
+          <AnimatedCloseIcon className="base-text" />
         </button>
         {/* content here */}
       </div>
