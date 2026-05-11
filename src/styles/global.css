@@ -36,11 +36,17 @@
     src: url('/fonts/ZenDots-Regular.woff2') format('woff2');
     font-display: swap;
 }
+@font-face{
+    font-family: 'Fredoka';
+    src: url('/fonts/Fredoka-Regular.woff2') format('woff2');
+    font-display: swap;
+}
 /* #endregion */
 
 @layer base{
     :root{
     --base-color: 247 247 217;
+    color: rgb(226, 18, 18); /* for debugging */
     line-height: 1;
     }
 
@@ -91,6 +97,38 @@
         .content-width { max-width: 930px; }
     }
     /* #endregion */
+
+    /* #region Grid Background */
+      .grid-background {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        background:
+            linear-gradient(rgba(140,192,143,0.052) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(140,192,143,0.052) 1px, transparent 1px),
+            linear-gradient(180deg,
+            rgba(247,247,217,0.03) 0%,
+            rgba(247,247,217,0) 22%,
+            rgba(247,247,217,0) 78%,
+            rgba(247,247,217,0.02) 100%),
+            linear-gradient(180deg,
+            rgba(5,6,9,1) 0%,
+            rgba(7,8,12,1) 24%,
+            rgba(4,5,8,1) 52%,
+            rgba(7,8,12,1) 78%,
+            rgba(5,6,9,1) 100%);
+        background-size: 56px 56px, 56px 56px, 100% 100%, 100% 100%;
+        background-position: center;
+    }
+
+    .gb--top-border {
+        border-top: 1px solid rgba(255,255,255,0.18);
+    }
+
+    .gb--bottom-border {
+        border-bottom: 1px solid rgba(255,255,255,0.18);
+    }
+    /* #endregion */
     
 }
 
@@ -98,18 +136,31 @@
     .col-xy-center {
         @apply flex flex-col justify-center items-center;
     }
-
+    .f-xy-center {
+        @apply flex justify-center items-center;
+    }
+    .f-y-center {
+        @apply flex items-center;
+    }
+    .f-x-center {
+        @apply flex justify-center;
+    }
     .f-col {
         @apply flex flex-col;
     }
-
+    .f-col-sb {
+        @apply flex flex-col justify-between;
+    }
     .f-row {
         @apply flex flex-row;
     }
-
     .f-row-sb {
         @apply flex flex-row justify-between;
     }
+    .wh-full{
+        @apply w-full h-full;
+    }
+
     /* #region Base Color Utilities */
     .base-text {
         color: rgb(var(--base-color));
@@ -118,6 +169,10 @@
     .base-border {
         border-color: rgb(var(--base-color) / 0.5); /* 50% opacity */
         border-width: 0.2px;
+    }
+
+    .base-border-color {
+        border-color: rgb(var(--base-color)); 
     }
 
     .base-bg {

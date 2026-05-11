@@ -13,6 +13,7 @@ export default {
             jura: ['Jura', 'sans-serif'],
             michroma: ['Michroma', 'sans-serif'],
             zendots: ['ZenDots', 'sans-serif'],
+            fredoka: ['Fredoka', 'sans-serif'],
         },
     },
   },

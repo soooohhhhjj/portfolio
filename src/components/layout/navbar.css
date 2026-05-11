@@ -4,6 +4,7 @@
     --hire-text-color: #109c52;
 }
 
+/* #region Navbar Styles */
 .icon-text {
     text-shadow: 0 0 10px rgba(206, 226, 252, 0.432);
     -webkit-text-stroke: 1px;
@@ -32,5 +33,33 @@
         opacity: 0.60;
     }
 }
+/* #endregion */
+
+/* #region Hire Modal Styles */
+/* Hire Modal child container title */
+.hmcc-title{
+    text-transform: uppercase;
+    -webkit-text-stroke: .5px;
+}
+
+/* Hire Modal header title  */
+.hmh-title{
+    -webkit-text-stroke: 1.2px;
+}
+
+/* Hire Modal Container Border Design (hmcbd) */
+.hmc-bd {
+    @apply border border-dashed border-white/30;
+}
+
+/* Hire Modal highlighted text */
+.hm-ht {
+    -webkit-text-stroke: 0.2px;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: rgba(255, 255, 255, 0.3);
+}
+
+/* #endregion */
 
 

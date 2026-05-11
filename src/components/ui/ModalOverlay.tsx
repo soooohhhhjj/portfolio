@@ -20,8 +20,8 @@ export function ModalOverlay({ isOpen, onClose, children, backdrop }: ModalOverl
                     className="fixed inset-0 z-50"
                     initial={{ y: '-100vh' }}
                     animate={{ y: 0 }}
-                    exit={{ y: '-100vh' }}
-                    transition={{ duration: 0.3, ease: [0.12, 0.7, 0.63, 0.9] }}
+                    exit={{ y: '-100vh', transition: { delay: 0.2, duration: 0.2, ease: 'easeInOut' } }}
+                    transition={{ duration: 0.2, ease: 'easeInOut' }}
                     onClick={onClose}
                 >
                     {/* Backdrop layer */}
@@ -30,11 +30,8 @@ export function ModalOverlay({ isOpen, onClose, children, backdrop }: ModalOverl
                     </div>
 
                     {/* Content layer */}
-                    <div className="absolute inset-0 flex justify-center items-start">
-                        <div className="content-width w-full min-h-screen"
-                         onClick={(e) => e.stopPropagation()}>
-                            {children}
-                        </div>
+                    <div className="absolute inset-0" onClick={(e) => e.stopPropagation()}>
+                        {children}
                     </div>
                 </motion.div>
             )}
