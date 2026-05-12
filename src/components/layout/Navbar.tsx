@@ -24,6 +24,7 @@ const flickerConfigs = useMemo<Record<number, FlickerConfig>>(() => ({
                     className="font-bruno icon-text cursor-pointer tracking-[2px] text-[20px]" 
                     runFlicker={introDone}
                     configs={flickerConfigs}
+                    onClick={() => window.location.reload()}
                 />
                 <div className="f-row items-center gap-1 hire-group cursor-pointer" onClick={hireModal.open}>
                     <div className="w-[4px] h-[4px] rounded-full bg-[var(--hire-text-color)] animation-pulse"></div>

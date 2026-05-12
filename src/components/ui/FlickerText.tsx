@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, type HTMLAttributes } from 'react';
 import './flickerText.css';
 
 export type FlickerIntensity = 'strong' | 'medium' | 'light';
@@ -9,7 +9,7 @@ export interface FlickerConfig {
   duration: number;
 }
 
-interface FlickerTextProps {
+interface FlickerTextProps extends HTMLAttributes<HTMLSpanElement> {
   text: string;
   className?: string;
   runFlicker?: boolean;
@@ -40,7 +40,7 @@ function buildShuffledPool(count: number): (FlickerIntensity | null)[] {
   return pool;
 }
 
-export function FlickerText({ text, className = '', runFlicker = true, configs }: FlickerTextProps) {
+export function FlickerText({ text, className = '', runFlicker = true, configs, ...props }: FlickerTextProps) {
   const chars = useMemo(() => text.split(''), [text]);
 
   const flickerStyles = useMemo(() => {
@@ -76,7 +76,7 @@ export function FlickerText({ text, className = '', runFlicker = true, configs }
   }, [chars, runFlicker, configs]);
 
   return (
-    <span className={className}>
+    <span className={className} {...props}>
       {chars.map((char, index) => (
         <span
           key={index}

@@ -18,11 +18,11 @@
 
 .animation-pulse {
     animation: hire-status-pulse 3.2s ease-in-out infinite;
+    transition: opacity 0.3s ease; /* smooth fallback */
 }
 
 .hire-group:hover .animation-pulse {
-    animation: none;
-    opacity: 1;
+    animation-duration: 0.8s; /* pulse gets excited, not dead */
 }
 
 @keyframes hire-status-pulse {
