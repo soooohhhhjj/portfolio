@@ -25,6 +25,15 @@
     animation-duration: 0.8s; /* pulse gets excited, not dead */
 }
 
+.hire-hint-cursor {
+    position: absolute;
+    right: -24px;     /* starts off to the right */
+    bottom: -20px;    /* and below */
+    pointer-events: none;
+    opacity: 0;       /* controlled by framer motion */
+    z-index: 10;
+}
+
 @keyframes hire-status-pulse {
     0%, 100% {
         opacity: 1;
