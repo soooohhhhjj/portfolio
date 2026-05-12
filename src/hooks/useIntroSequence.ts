@@ -70,6 +70,7 @@ export function useIntroSequence() {
     return {
         welcomeVisible: phase === 'welcome',       // controls AnimatePresence
         contentVisible: phase !== 'welcome',       // controls main content slide-in
+        introDone: phase === 'done',               // true when all intro animations have finished
         starMode: phase === 'sliding'              // cinematic only during slide
             ? 'cinematic' : 'normal',
         handleWelcomeDone,

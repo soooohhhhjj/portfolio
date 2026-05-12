@@ -21,7 +21,7 @@ import { SLIDE_TRANSITION } from "./lib/animations";
 
 export default function App() {
   useLenis();
-  const { welcomeVisible, contentVisible, starMode, handleWelcomeDone } = useIntroSequence();
+  const { welcomeVisible, contentVisible, introDone, starMode, handleWelcomeDone } = useIntroSequence();
 
   return (
     <div className="f-col gap-6 px-3 sm:px-0 overflow-x-hidden">
@@ -45,7 +45,7 @@ export default function App() {
         animate={{ y: contentVisible ? 0 : '100vh' }}
         transition={SLIDE_TRANSITION}
       >
-        <Navbar />
+        <Navbar introDone={introDone} />
         <main className="f-col gap-6">
           <Hero />
           <RelevantExperiences />
