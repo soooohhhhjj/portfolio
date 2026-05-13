@@ -8,7 +8,7 @@ interface WelcomeProps {
 const WELCOME_TEXT = 'Welcome to my Portfolio Website.😄';
 const TEXT_CHARS = Array.from(WELCOME_TEXT);
 const TYPING_SPEED = 40;
-const ON_TYPING_DONE_BUFFER_TIME = 1000;
+const ON_TYPING_DONE_BUFFER_TIME = 1800;
 
 export default function Welcome({ onDone }: WelcomeProps) {
     const [count, setCount] = useState(0);
@@ -46,7 +46,9 @@ export default function Welcome({ onDone }: WelcomeProps) {
 
     return (
         <section>
-            <div className="col-xy-center min-h-screen content-width border base-border text-[23px] tracking-[0.09rem] base-text">
+            <div className="col-xy-center min-h-screen content-width 
+             font-jura welcome-text tracking-[1px] text-center
+             text-[26px]">
                 <div>
                     {displayed}
                     <span className={`welcome-caret ${isTypingDone ? 'welcome-caret--blink' : ''}`} />

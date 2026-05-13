@@ -14,13 +14,17 @@
 .welcome-caret {
   display: inline-block;
   width: 2px;
-  height: 1.35em;
+  height: 36px;
   background-color: rgb(var(--base-color));
   vertical-align: bottom;
-  transform: translateY(-4px);
+  transform: translateY(4px);
 }
 
 .welcome-caret--blink {
   animation: blink 1s step-start infinite;
+}
+
+.welcome-text {
+    -webkit-text-stroke: .1px;   
 }
 /* #endregion */
