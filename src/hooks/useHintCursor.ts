@@ -12,7 +12,7 @@ export function useHintCursor(introDone: boolean, onHireClick: () => void) {
 
         const runAnimationLoop = async () => {
             // Give it a moment before the very first tease
-            await new Promise(r => setTimeout(r, 500));
+            await new Promise(r => setTimeout(r, 1000));
 
             while (isActive) {
                 if (!introDone || hasClicked || !isInView || !scope.current) break;

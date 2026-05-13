@@ -1,7 +1,9 @@
+// src/components/ui/HireModal.tsx
 import { ModalOverlay } from './ModalOverlay';
 import { AnimatedCloseIcon } from './AnimatedCloseIcon';
 import { hireModalData } from '../../data/hireModalData';
 import { motion } from 'framer-motion';
+import { useModalLenis } from '../../hooks/useModalLenis';
 
 interface HireModalProps {
   isOpen: boolean;
@@ -29,6 +31,8 @@ const SectionTitle = ({ title }: { title: string }) => (
 );
 
 export function HireModal({ isOpen, onClose }: HireModalProps) {
+  const scrollRef = useModalLenis(isOpen);
+
   return (
     <ModalOverlay
       isOpen={isOpen}
@@ -37,7 +41,9 @@ export function HireModal({ isOpen, onClose }: HireModalProps) {
     >
       {/* Scrollable area that centers content vertically when there's space */}
       <div 
+        ref={scrollRef}
         className="relative wh-full overflow-y-auto"
+        style={{ height: '100dvh' }}
         onClick={onClose}
       >
         <div className="f-y-center min-h-full py-12">

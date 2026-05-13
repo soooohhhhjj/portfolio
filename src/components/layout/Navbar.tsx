@@ -20,7 +20,7 @@ const flickerConfigs = useMemo<Record<number, FlickerConfig>>(() => ({
     return(
     <>
         <nav>
-            <div className="f-row-sb items-end h-16 content-width base-border">
+            <div className="f-row-sb items-end h-16 content-width">
                 <FlickerText 
                     text="sohj.abe" 
                     className="font-bruno icon-text cursor-pointer tracking-[2px] text-[20px]" 
