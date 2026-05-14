@@ -42,13 +42,7 @@ export default function App() {
       <div className="f-col gap-6">
         <Navbar introDone={introDone} contentVisible={contentVisible} />
         <main className="f-col gap-6">
-          <motion.div
-            initial={{ y: '100vh' }}
-            animate={{ y: contentVisible ? 0 : '100vh' }}
-            transition={slideTransitionWithDuration(1)}
-          >
-            <Hero />
-          </motion.div>
+          <Hero contentVisible={contentVisible} />
           <motion.div
             initial={{ y: '100vh' }}
             animate={{ y: contentVisible ? 0 : '100vh' }}
@@ -75,3 +69,4 @@ export default function App() {
     </div>
   );
 }
+

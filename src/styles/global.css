@@ -151,6 +151,9 @@
     .f-col-sb {
         @apply flex flex-col justify-between;
     }
+    .f-col-y-center {
+        @apply flex flex-col items-center;
+    }
     .f-row {
         @apply flex flex-row;
     }
