@@ -47,6 +47,7 @@
     :root{
     --base-color: 247 247 217;
     color: rgb(226, 18, 18); /* for debugging */
+    font-family: 'Jura', sans-serif;
     line-height: 1;
     }
 
