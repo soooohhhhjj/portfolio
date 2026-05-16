@@ -78,7 +78,7 @@ export default function Hero({ contentVisible = false }: { contentVisible?: bool
                     initial={{ y: '100vh' }}
                     animate={{ y: contentVisible ? 0 : '100vh' }}
                     transition={heroTextIntroTransition}
-                    className="mt-2 w-fit text-center md:text-start md:ml-auto"
+                    className="mt-12 md:mt-2 w-fit text-center md:text-start md:ml-auto"
                 >
                     {/* Hero Name Text */}
                     <motion.p
@@ -97,8 +97,9 @@ export default function Hero({ contentVisible = false }: { contentVisible?: bool
                         initial={{ y: '100vh' }}
                         animate={{ y: contentVisible ? 0 : '100vh' }}
                         transition={heroBigTextIntroTransition}
-                        className="mt-2 inline-block font-anta font-extrabold 
-                        md:leading-[64px] lg:leading-[83px] tracking-tight
+                        className="inline-block font-anta font-extrabold 
+                        mt-4 md:mt-2
+                        sm:leading-[75px] md:leading-[64px] lg:leading-[83px] tracking-tight
                         text-[32px] sm:text-[61px] md:text-[47px] lg:text-[61px]"
                     >
                         <span className="hero-big-text">Building pixel-perfect</span>
@@ -113,7 +114,7 @@ export default function Hero({ contentVisible = false }: { contentVisible?: bool
                         transition={heroRoleIntroTransition}
                         className="hero-role-text font-bruno font-[500] tracking-[1px]
                         mt-10 md:mt-8
-                        text-[16px] sm:text-[24px] md:text-[20px] lg:text-[26px]"
+                        text-[16px] sm:text-[25px] md:text-[20px] lg:text-[26px]"
                     >
                         Full-Stack Developer
                     </motion.p>
