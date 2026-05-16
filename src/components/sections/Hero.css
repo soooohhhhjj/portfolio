@@ -18,6 +18,11 @@
     -webkit-text-stroke: 1.3px;
   }
 
+  .highlights-title {
+    text-shadow: 0 0 13px rgb(var(--base-color) / 0.4);
+    -webkit-text-stroke: 0.2px;
+  }
+
   /* #region Hero Icon Links */
   .hi-mc{ /* hi-mc is short for Hero Icon Main Container */
     --hero-action-icon-size: 21px;
