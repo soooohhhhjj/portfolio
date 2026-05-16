@@ -7,11 +7,12 @@ import { LuGithub, LuLinkedin } from 'react-icons/lu';
 import { type ComponentType } from 'react';
 import './Hero.css';
 
-const heroPicIntroTransition = slideTransitionWithDuration(1.2);
-const heroTextIntroTransition = slideTransitionWithDuration(1.3);
-const heroNameIntroTransition = slideTransitionWithDuration(1.35);
-const heroBigTextIntroTransition = slideTransitionWithDuration(1.4);
-const heroRoleIntroTransition = slideTransitionWithDuration(1.45);
+const heroPicIntroTransition = slideTransitionWithDuration(0.8);
+const heroNameIntroTransition = slideTransitionWithDuration(0.95);
+const heroBigTextIntroTransition = slideTransitionWithDuration(1.2);
+const heroRoleIntroTransition = slideTransitionWithDuration(1.5);
+const heroIconsIntroBaseDelay = 1.6;
+const heroIconsIntroDelayStep = 0.08;
 
 type HeroActionLink = {
     href: string;
@@ -23,6 +24,9 @@ type HeroActionLink = {
 };
 
 export default function Hero({ contentVisible = false }: { contentVisible?: boolean }){
+    const getHeroIconIntroTransition = (index: number) =>
+        slideTransitionWithDuration(heroIconsIntroBaseDelay + index * heroIconsIntroDelayStep);
+
     const heroActionLinks: HeroActionLink[] = [
         { href: '#', label: 'Resume', ariaLabel: 'Open resume', Icon: FileText },
         {
@@ -74,12 +78,7 @@ export default function Hero({ contentVisible = false }: { contentVisible?: bool
                 </motion.div>
 
                 {/* Text Content Container */}
-                <motion.div
-                    initial={{ y: '100vh' }}
-                    animate={{ y: contentVisible ? 0 : '100vh' }}
-                    transition={heroTextIntroTransition}
-                    className="mt-12 md:mt-2 w-fit text-center md:text-start md:ml-auto"
-                >
+                <div className="mt-12 md:mt-2 w-fit text-center md:text-start md:ml-auto">
                     {/* Hero Name Text */}
                     <motion.p
                         initial={{ y: '100vh' }}
@@ -99,7 +98,7 @@ export default function Hero({ contentVisible = false }: { contentVisible?: bool
                         transition={heroBigTextIntroTransition}
                         className="inline-block font-anta font-extrabold 
                         mt-3 sm:mt-4 md:mt-2
-                        leading-[50px] sm:leading-[75px] md:leading-[64px] lg:leading-[83px] tracking-tight
+                        leading-[50px] sm:leading-[75px] md:leading-[64px] lg:leading-[78px] tracking-tight
                         text-[38px] sm:text-[61px] md:text-[47px] lg:text-[61px]"
                     >
                         <span className="hero-big-text">Building pixel-perfect</span>
@@ -134,7 +133,7 @@ export default function Hero({ contentVisible = false }: { contentVisible?: bool
                                 aria-label={ariaLabel}
                                 initial={{ y: '100vh' }}
                                 animate={{ y: contentVisible ? 0 : '100vh' }}
-                                transition={slideTransitionWithDuration(1.5 + index * 0.05)}
+                                transition={getHeroIconIntroTransition(index)}
                                 className="hi-lc md:h-[calc(var(--hero-action-icon-size)+10px)]"
                             >
                                 <Icon className="hi-lc-icon" />
@@ -143,7 +142,7 @@ export default function Hero({ contentVisible = false }: { contentVisible?: bool
                             </motion.a>
                         ))}
                     </div>
-                </motion.div>
+                </div>
             </div>
         </section>
     )

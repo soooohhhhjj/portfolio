@@ -18,7 +18,7 @@ export default function Navbar({
     const hireModal = useModal();
     const { containerRef, scope, hasClicked, handleHireClick } = useHintCursor(introDone, hireModal.open);
     const logoIntroTransition = slideTransitionWithDuration(0.6);
-    const hireIntroTransition = slideTransitionWithDuration(0.72);
+    const hireIntroTransition = slideTransitionWithDuration(0.7);
 
 const flickerConfigs = useMemo<Record<number, FlickerConfig>>(() => ({
     0: { intensity: 'strong', duration: 0.55, delay: 0.05 },
