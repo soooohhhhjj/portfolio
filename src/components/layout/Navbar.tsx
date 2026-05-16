@@ -39,7 +39,7 @@ const flickerConfigs = useMemo<Record<number, FlickerConfig>>(() => ({
                     <FlickerText 
                         text="sohj.abe" 
                         className="font-bruno icon-text cursor-pointer tracking-[2px] 
-                        text-[20px] text-[24px] md:text-[18px] lg:text-[20px]" 
+                        text-[20px] sm:text-[24px] md:text-[18px] lg:text-[20px]" 
                         runFlicker={introDone}
                         configs={flickerConfigs}
                         onClick={() => window.location.reload()}
@@ -54,7 +54,7 @@ const flickerConfigs = useMemo<Record<number, FlickerConfig>>(() => ({
                     <div 
                         ref={containerRef}
                         className="f-row items-center gap-1 hire-group cursor-pointer relative 
-                        mb-[2px] sm:mb-[3px] md:mb-0" 
+                        mb-[1px] sm:mb-[3px] md:mb-0" 
                         onClick={handleHireClick}
                     >
                         {/* Fake hint cursor */}
@@ -68,7 +68,7 @@ const flickerConfigs = useMemo<Record<number, FlickerConfig>>(() => ({
 
                         <div className="w-[4px] h-[4px] rounded-full bg-[var(--hire-text-color)] animation-pulse"></div>
                         <div className="font-jura hire-text tracking-[.3px] animation-pulse
-                         text-[13px] sm:text-[14px] md:text-[11px] lg:text-[13px]">Available for Hire</div>
+                         text-[12px] sm:text-[14px] md:text-[11px] lg:text-[13px]">Available for Hire</div>
                     </div>
                 </motion.div>
             </div>
