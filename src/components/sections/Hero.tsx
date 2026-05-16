@@ -60,7 +60,7 @@ export default function Hero({ contentVisible = false }: { contentVisible?: bool
                     transition={heroPicIntroTransition}
                 >
                     <GlassCard
-                        width="max-w-full md:max-w-[272px] lg:max-w-[320px]"
+                        width="max-w-full md:max-w-[260px] lg:max-w-[320px]"
                         corner="rounded-[7px]"
                         shadow="shadow-[0_0_30px_rgba(255,255,255,0.15)]"
                         className="overflow-hidden max-h-[410px] sm:max-h-[580px]"
@@ -86,7 +86,7 @@ export default function Hero({ contentVisible = false }: { contentVisible?: bool
                         animate={{ y: contentVisible ? 0 : '100vh' }}
                         transition={heroNameIntroTransition}
                         className="hero-name-text font-semibold
-                        text-[12px] sm:text-[18px] md:text-[15px] lg:text-[17px]
+                        text-[12px] sm:text-[18px] md:text-[14px] lg:text-[17px]
                         tracking-[.3px] sm:tracking-[1.5px]"
                     >
                         Hi, I&apos;m Carlo Joshua B. Abellera, and I enjoy
@@ -98,8 +98,8 @@ export default function Hero({ contentVisible = false }: { contentVisible?: bool
                         animate={{ y: contentVisible ? 0 : '100vh' }}
                         transition={heroBigTextIntroTransition}
                         className="mt-2 inline-block font-anta font-extrabold 
-                        lg:leading-[83px] tracking-tight
-                        text-[32px] sm:text-[61px] md:text-[45px] lg:text-[61px]"
+                        md:leading-[64px] lg:leading-[83px] tracking-tight
+                        text-[32px] sm:text-[61px] md:text-[47px] lg:text-[61px]"
                     >
                         <span className="hero-big-text">Building pixel-perfect</span>
                         <br />
@@ -111,14 +111,16 @@ export default function Hero({ contentVisible = false }: { contentVisible?: bool
                         initial={{ y: '100vh' }}
                         animate={{ y: contentVisible ? 0 : '100vh' }}
                         transition={heroRoleIntroTransition}
-                        className="hero-role-text mt-10 font-bruno font-[500] tracking-[1px]
+                        className="hero-role-text font-bruno font-[500] tracking-[1px]
+                        mt-10 md:mt-8
                         text-[16px] sm:text-[24px] md:text-[20px] lg:text-[26px]"
                     >
                         Full-Stack Developer
                     </motion.p>
 
                     {/* Hero Call-to-Action Links Container */}
-                    <div className="hi-mc mt-6 sm:mt-7 md:justify-start
+                    <div className="hi-mc md:justify-start
+                     mt-6 sm:mt-7 md:mt-5
                      [--hero-action-icon-size:21px] 
                      md:[--hero-action-icon-size:18px]
                      lg:[--hero-action-icon-size:22px]">

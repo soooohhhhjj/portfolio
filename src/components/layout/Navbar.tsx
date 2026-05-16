@@ -38,7 +38,8 @@ const flickerConfigs = useMemo<Record<number, FlickerConfig>>(() => ({
                 >
                     <FlickerText 
                         text="sohj.abe" 
-                        className="font-bruno icon-text cursor-pointer tracking-[2px] text-[20px]" 
+                        className="font-bruno icon-text cursor-pointer tracking-[2px] 
+                        text-[20px] md:text-[18px] lg:text-[20px]" 
                         runFlicker={introDone}
                         configs={flickerConfigs}
                         onClick={() => window.location.reload()}
@@ -66,7 +67,7 @@ const flickerConfigs = useMemo<Record<number, FlickerConfig>>(() => ({
 
                         <div className="w-[4px] h-[4px] rounded-full bg-[var(--hire-text-color)] animation-pulse"></div>
                         <div className="font-jura hire-text tracking-[.3px] animation-pulse
-                         text-[13px]">Available for Hire</div>
+                         text-[13px] md:text-[11px] lg:text-[13px]">Available for Hire</div>
                     </div>
                 </motion.div>
             </div>
