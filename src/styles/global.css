@@ -146,8 +146,14 @@
     .f-x-center {
         @apply flex justify-center;
     }
+    .f-xy-center{
+        @apply flex justify-center items-center
+    }
     .f-col {
         @apply flex flex-col;
+    }
+    .f-col-x-start {
+        @apply flex flex-col items-start;
     }
     .f-col-sb {
         @apply flex flex-col justify-between;

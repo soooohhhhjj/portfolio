@@ -2,7 +2,7 @@
 import { GlassCard } from '../ui/GlassCard';
 import { motion } from 'framer-motion';
 import { slideTransitionWithDuration } from '../../lib/animations';
-import { FileText, Mail } from 'lucide-react';
+import { BugOff, FileText, GraduationCap, LaptopMinimalCheck, Layers, Mail } from 'lucide-react';
 import { LuGithub, LuLinkedin } from 'react-icons/lu';
 import { type ComponentType } from 'react';
 import './Hero.css';
@@ -14,6 +14,8 @@ const heroRoleIntroTransition = slideTransitionWithDuration(1.5);
 const heroIconsIntroBaseDelay = 1.6;
 const heroIconsIntroDelayStep = 0.08;
 const heroHighlightsIntroTransition = slideTransitionWithDuration(1.6);
+const heroCardsIntroBaseDelay = 1.7;
+const heroCardsIntroDelayStep = 0.2;
 
 type HeroActionLink = {
     href: string;
@@ -24,9 +26,17 @@ type HeroActionLink = {
     rel?: string;
 };
 
+type HeroCard = {
+    title: string;
+    description: string;
+    Icon: ComponentType<{ className?: string }>;
+};
+
 export default function Hero({ contentVisible = false }: { contentVisible?: boolean }){
     const getHeroIconIntroTransition = (index: number) =>
         slideTransitionWithDuration(heroIconsIntroBaseDelay + index * heroIconsIntroDelayStep);
+    const getHeroCardIntroTransition = (index: number) =>
+        slideTransitionWithDuration(heroCardsIntroBaseDelay + index * heroCardsIntroDelayStep);
 
     const heroActionLinks: HeroActionLink[] = [
         { href: '#', label: 'Resume', ariaLabel: 'Open resume', Icon: FileText },
@@ -51,6 +61,28 @@ export default function Hero({ contentVisible = false }: { contentVisible?: bool
             label: 'Email',
             ariaLabel: 'Send an email',
             Icon: Mail,
+        },
+    ];
+    const heroCards: HeroCard[] = [
+        {
+            title: 'BSIT Graduate',
+            description: 'Bachelor of Science in Information Technology',
+            Icon: GraduationCap,
+        },
+        {
+            title: 'IT Intern Exp.',
+            description: 'Technical support, system deployment & reporting',
+            Icon: LaptopMinimalCheck,
+        },
+        {
+            title: 'SysArch Thesis',
+            description: 'Lead Developer - Inventory Management System',
+            Icon: Layers,
+        },
+        {
+            title: 'Capstone Thesis',
+            description: 'Planning, debugging & feature support',
+            Icon: BugOff,
         },
     ];
 
@@ -151,16 +183,47 @@ export default function Hero({ contentVisible = false }: { contentVisible?: bool
                         animate={{ y: contentVisible ? 0 : '100vh' }}
                         transition={heroHighlightsIntroTransition}
                         className="highlights-title font-bruno uppercase tracking-[1.5px] 
-                         text-[14px] sm:text-[16px] md:text-start md:text-[13px] lg:text-[15px]
-                         mb-7 md:mb-5"
+                         text-[14px] sm:text-[16px] md:text-start md:text-[11px] lg:text-[15px]
+                         mb-7 md:mb-4 lg:mb-5"
                     >
                         Highlights
                     </motion.p>
-                    <div className='f-row'>
-                        <div>card 1</div>
-                        <div>card 2</div>
-                        <div>card 3</div>
-                        <div>card 4</div>
+
+                    {/* Container of the cards */}
+                    <div className="f-col gap-5 md:f-row-sb md:gap-0">
+                        {heroCards.map(({ title, description, Icon }, index) => (
+                            <motion.div
+                                key={title}
+                                initial={{ y: '100vh' }}
+                                animate={{ y: contentVisible ? 0 : '100vh' }}
+                                transition={getHeroCardIntroTransition(index)}
+                                className="relative rounded-[7px] w-full hc-bd
+                                 md:w-[calc(25%-9px)] lg:w-[calc(25%-12px)]
+                                 p-4 md:p-5 lg:p-6"
+                            >
+                                <div className="f-y-center
+                                 md:f-col-x-start gap-3 lg:gap-5">
+                                    <div className="f-xy-center hc-icd
+                                     rounded-[6px] lg:rounded-[6px]
+                                     h-10 md:h-[45px] lg:h-[50px] 
+                                     w-16 md:w-[45px] lg:w-[50px]">
+                                        <Icon className=" 
+                                         w-[18px] lg:w-6 
+                                         h-[18px] lg:h-6" />
+                                    </div>
+                                    <div className="f-col w-full gap-[6px]">
+                                        <h3 className="font-bruno tracking-[1px] hc-tohd 
+                                         text-[11px] lg:text-[14px]">{title}</h3>
+                                        <div className="hc-tud" />
+                                    </div>
+                                </div>
+                                <div className="font-jura leading-[1.5] hc-dohd
+                                 md:mt-2 lg:mt-3
+                                  text-[11px] md:text-[10px] lg:text-[12px]">
+                                    {description}
+                                </div>
+                            </motion.div>
+                        ))}
                     </div>
                 </div>
             </div>
