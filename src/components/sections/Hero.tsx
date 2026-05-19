@@ -179,25 +179,25 @@ export default function Hero({ contentVisible = false }: { contentVisible?: bool
                                  md:w-[calc(25%-9px)] lg:w-[calc(25%-12px)]
                                  p-4 md:p-5 lg:p-6"
                             >
-                                <div className="f-y-center
-                                 md:f-col-x-start gap-3 lg:gap-5">
+                                <div className="f-y-center md:f-col-x-start 
+                                 gap-3 md:gap-4 lg:gap-[22px]">
                                     <div className="f-xy-center hc-icd rounded-[6px]
-                                     h-10 md:h-[45px] lg:h-[50px] 
+                                     h-12 md:h-[45px] lg:h-[50px] 
                                      w-16 md:w-[45px] lg:w-[50px]">
                                         <Icon className=" 
                                          w-[18px] lg:w-6 
                                          h-[18px] lg:h-6" />
                                     </div>
-                                    <div className="f-col w-full gap-[6px]">
+                                    <div className="f-col w-full">
                                         <h3 className="font-bruno tracking-[1px] hc-tohd 
                                          text-[11px] lg:text-[14px]">{title}</h3>
-                                        <div className="hc-tud" />
+                                        <div className="hc-tud mt-1 md:mt-[5px] lg:mt-[6px]" />
+                                        <div className="font-jura leading-[1.5] hc-dohd
+                                         mt-1 md:mt-[7px] lg:mt-2
+                                         text-[11px] md:text-[10px] lg:text-[12px]">
+                                            {description}
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="font-jura leading-[1.5] hc-dohd
-                                 md:mt-2 lg:mt-3
-                                  text-[11px] md:text-[10px] lg:text-[12px]">
-                                    {description}
                                 </div>
                             </motion.div>
                         ))}
