@@ -155,12 +155,13 @@ export default function Hero({ contentVisible = false }: { contentVisible?: bool
                     </div>
                 </div>
 
-                <div className="mt-12 md:mt-9 lg:mt-12">
+                <div className="mt-24 md:mt-9 lg:mt-12">
                     <motion.p
                         variants={slideUp} initial="hidden" animate={animate} transition={transitions.highlights}
                         className="highlights-title font-bruno uppercase tracking-[1.5px] 
-                         text-[14px] sm:text-[16px] md:text-start md:text-[11px] lg:text-[15px]
-                         mb-7 md:mb-4 lg:mb-5"
+                         text-[13px] sm:text-[14px] md:text-[11px] lg:text-[15px]
+                         mb-7 md:mb-4 lg:mb-5
+                         text-center md:text-start"
                     >
                         Highlights
                     </motion.p>
