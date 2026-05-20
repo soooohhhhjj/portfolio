@@ -26,6 +26,8 @@ export const relevantExperiencesContentData: RelevantExperiencesContentState = {
       modalTags: ['Installation', 'Configuration', 'Basic Networking'],
       image: 're-section/parent1/nc2-certi.PNG',
       layout: { x: 566, y: 115, width: 322, height: 302 },
+      keyContentTitle: 'Key Takeaway',
+      keyContent: 'Developed foundational hardware servicing skills through hands-on practice, building confidence in PC troubleshooting and basic network configuration.',
     },
     {
       id: 'transfer-it-internship',
@@ -48,10 +50,13 @@ export const relevantExperiencesContentData: RelevantExperiencesContentState = {
         'OS Setup',
         'Documentation',
         'Troubleshooting',
-        'Documentation',
       ],
       image: 're-section/parent1/tit-logo.png',
       layout: { x: 15, y: 365, width: 317, height: 280 },
+      logoAnimation: 'bounce',
+      companyDescription: 'Transfer IT is a printing and design company specializing in custom transfers for apparel and merchandise. During my 209-hour internship, I supported IT operations and explored AI tools for creative workflows.',
+      keyContentTitle: 'Key Takeaway',
+      keyContent: 'Gained practical IT support experience in a real office environment, learning to manage issues systematically and communicate with cross-functional teams.',
     },
     {
       id: 'dev-academic-projects',
@@ -79,6 +84,14 @@ export const relevantExperiencesContentData: RelevantExperiencesContentState = {
       modalTags: ['HTML', 'CSS', 'JavaScript', 'PHP', 'MySQL'],
       image: 're-section/parent2/sysarch.PNG',
       layout: { x: 58, y: 820, width: 340, height: 319 },
+      keyContentTitle: 'Key Features',
+      keyContent: [
+        'Inventory CRUD operations',
+        'Real-time stock tracking dashboard',
+        'User authentication and role management',
+        'Audit trail for inventory changes',
+        'Space-themed glassmorphism UI',
+      ],
     },
     {
       id: 'capstone-thesis',
@@ -97,6 +110,14 @@ export const relevantExperiencesContentData: RelevantExperiencesContentState = {
       modalTags: ['HTML', 'CSS', 'JavaScript', 'PHP', 'MySQL'],
       image: 're-section/parent2/capstone-thesis.png',
       layout: { x: 567, y: 872, width: 340, height: 304 },
+      keyContentTitle: 'Key Features',
+      keyContent: [
+        'Payment tracking automation',
+        'Contribution status monitoring',
+        'GCash integration for classroom funds',
+        'Real-time payment verification',
+        'Secure user authentication',
+      ],
     },
   ],
   connections: [
@@ -163,11 +184,11 @@ export const relevantExperiencesContentData: RelevantExperiencesContentState = {
   mdLayout: {
     nodes: [
       { id: 'it-experiences', layout: { x: 32, y: 0, width: 337, height: 204 } },
-      { id: 'nc2-certificate', layout: { x: 398, y: 92, width: 321, height: 302 } },
+      { id: 'nc2-certificate', layout: { x: 425, y: 92, width: 321, height: 302 } },
       { id: 'transfer-it-internship', layout: { x: 0, y: 314, width: 316, height: 281 } },
       { id: 'dev-academic-projects', layout: { x: 367, y: 511, width: 353, height: 180 } },
       { id: 'system-architecture-thesis', layout: { x: 0, y: 801, width: 335, height: 317 } },
-      { id: 'capstone-thesis', layout: { x: 400, y: 906, width: 335, height: 302 } },
+      { id: 'capstone-thesis', layout: { x: 422, y: 906, width: 335, height: 302 } },
     ],
     connections: [
       {
@@ -225,7 +246,7 @@ export const relevantExperiencesContentData: RelevantExperiencesContentState = {
         toAnchor: 'top',
         viaPoints: [
           { x: 544, y: 782 },
-          { x: 568, y: 782 },
+          { x: 590, y: 782 },
         ],
         variant: 'detail',
       },

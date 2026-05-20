@@ -23,6 +23,10 @@ export type RelevantExperienceNode = {
   image?: string;
   icon?: RelevantExperienceIcon;
   layout: RelevantExperienceNodeLayout;
+  logoAnimation?: 'bounce' | 'static';
+  companyDescription?: string;
+  keyContentTitle?: string;
+  keyContent?: string | string[];
 };
 
 export type RelevantExperienceConnectionPoint = {
