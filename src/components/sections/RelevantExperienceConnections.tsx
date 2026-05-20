@@ -59,7 +59,7 @@ export default function RelevantExperienceConnections({
 
   return (
     <svg
-      className="relevant-experiences-connections"
+      className="re-csvg"
       width={canvasWidth}
       height={canvasHeight}
       viewBox={`0 0 ${canvasWidth} ${canvasHeight}`}
@@ -72,7 +72,7 @@ export default function RelevantExperienceConnections({
           <path
             key={conn.id}
             d={path}
-            className={`relevant-experiences-connection relevant-experiences-connection--${conn.variant}`}
+            className={`re-cln re-cln--${conn.variant === 'group' ? 'gn' : 'dn'}`}
           />
         );
       })}

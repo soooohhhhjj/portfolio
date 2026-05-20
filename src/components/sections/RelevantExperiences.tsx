@@ -33,20 +33,20 @@ function onKeyActivate(fn: () => void) {
 
 function ParentCardContent({ parent }: { parent: RelevantExperienceNode }) {
   return (
-    <article className="relevant-experiences-card__surface relevant-experiences-card__surface--framed relevant-experiences-card__surface--glass relevant-experiences-card__surface--parent journey-map-card journey-showcase__card journey-showcase__card--parent">
-      <div className="journey-map-card__parent-header">
+    <article className="rec-sd rec-sd--framed rec-sd--glass relative w-full border-none p-[17.6px] overflow-visible">
+      <div className="f-y-center gap-[13.6px]">
         {parent.icon && (
-          <div className="journey-map-card__icon-shell">
+          <div className="rec-icd relative inline-flex items-center justify-center w-12 h-[40.8px] shrink-0">
             {parent.icon === 'briefcase-business' ? (
-              <BriefcaseBusiness className="journey-map-card__icon" strokeWidth={1.3} />
+              <BriefcaseBusiness className="w-[22.4px] h-[22.4px]" strokeWidth={1.3} />
             ) : (
-              <FolderKanban className="journey-map-card__icon" strokeWidth={1.3} />
+              <FolderKanban className="w-[22.4px] h-[22.4px]" strokeWidth={1.3} />
             )}
           </div>
         )}
-        <h3 className="journey-map-card__title">{parent.title}</h3>
+        <h3 className="text-[15.04px] font-bold tracking-[0.1px] whitespace-normal leading-[1.3]">{parent.title}</h3>
       </div>
-      <p className="journey-map-card__details text-sm leading-relaxed">{parent.details}</p>
+      <p className="mt-[11.52px] pt-[12.8px] border-t border-dashed border-[rgb(var(--base-color)/0.28)] text-[13.12px] leading-[1.55] opacity-[0.72]">{parent.details}</p>
     </article>
   );
 }
@@ -54,39 +54,39 @@ function ParentCardContent({ parent }: { parent: RelevantExperienceNode }) {
 function ChildCardContent({ child }: { child: RelevantExperienceNode }) {
   const isBounce = child.logoAnimation === 'bounce';
   return (
-    <article className="relevant-experiences-card__surface relevant-experiences-card__surface--framed relevant-experiences-card__surface--glass relevant-experiences-card__surface--child journey-map-card journey-showcase__card journey-showcase__card--child">
+    <article className="rec-sd rec-sd--framed rec-sd--glass relative w-full border-none p-4 max-sm:p-[14.08px] overflow-visible shadow-[0_12px_24px_rgba(0,0,0,0.18)]">
       {child.image && (
         <GlassCard
           width="w-full"
           corner="rounded-[2px]"
           shadow=""
-          className="overflow-hidden journey-map-card__media"
+          className="overflow-hidden mb-3 aspect-auto"
         >
           {isBounce ? (
             <BouncingLogoDisplay
               src={`${import.meta.env.BASE_URL}${child.image}`}
               alt={child.title}
-              className="relevant-experiences-modal__dvd-shell--preview"
-              logoClassName="relevant-experiences-modal__dvd-logo--preview"
+              className="!min-h-[134.4px]"
+              logoClassName="rem-dla !w-[clamp(84px,34%,115.2px)]"
             />
           ) : (
             <img
               src={`${import.meta.env.BASE_URL}${child.image}`}
               alt={child.title}
-              className="journey-map-card__image"
+              className="block w-full h-auto"
               loading="lazy"
               draggable={false}
             />
           )}
         </GlassCard>
       )}
-      <div className="relevant-experiences-card__body">
-        <h4 className="journey-map-card__child-title">{child.title}</h4>
-        <p className="journey-map-card__child-details">{child.details}</p>
+      <div className="relative z-10 overflow-hidden">
+        <h4 className="text-[15.2px] font-bold tracking-[0.1px] leading-[1.35] whitespace-normal">{child.title}</h4>
+        <p className="mt-[1.6px] mb-0 pl-[2px] text-[rgb(var(--base-color)/0.7)] text-[11.84px] leading-[1.45] tracking-[0.06px] overflow-hidden">{child.details}</p>
         {child.previewTags && child.previewTags.length > 0 && (
-          <div className="relevant-experiences-card__tags" aria-label={`${child.title} tags`}>
+          <div className="flex flex-wrap gap-[6.08px] mt-[4.8px] pl-[2px] overflow-hidden" aria-label={`${child.title} tags`}>
             {child.previewTags.map((tag) => (
-              <span key={tag} className="relevant-experiences-card__tag">
+              <span key={tag} className="rec-td">
                 {tag}
               </span>
             ))}
@@ -114,49 +114,49 @@ function ParentModalBody({
   onSelectNode: (nodeId: string) => void;
 }) {
   return (
-    <div className="flex flex-col gap-6">
-      <section className="relevant-experiences-modal__section relevant-experiences-modal__section--parent-intro">
-        <div className="relevant-experiences-modal__section-header">
-          <p className="relevant-experiences-modal__label relevant-experiences-modal__label--primary">
+    <div className="f-col gap-6">
+      <section className="rem-sc rem-sc--pi pb-4">
+        <div className="f-y-center gap-[7.2px]">
+          <p className="m-0 ml-[4px] text-[rgb(var(--base-color)/0.96)] text-[13.12px] font-bold tracking-[0.05em] uppercase">
             Overview
           </p>
         </div>
-        <p className="relevant-experiences-modal__intro">{node.details}</p>
+        <p className="mt-[9.6px] pl-2 text-[rgb(var(--base-color)/0.84)] text-[15.68px] leading-[1.78] tracking-[0.08px]">{node.details}</p>
       </section>
 
-      <section className="relevant-experiences-modal__section">
-        <div className="relevant-experiences-modal__section-header">
-          <p className="relevant-experiences-modal__label relevant-experiences-modal__label--primary">
+      <section className="rem-sc">
+        <div className="f-y-center gap-[7.2px]">
+          <p className="m-0 ml-[4px] text-[rgb(var(--base-color)/0.96)] text-[13.12px] font-bold tracking-[0.05em] uppercase">
             Included Work
           </p>
         </div>
         {childNodes.length > 0 && (
-          <div className="relevant-experiences-modal__child-grid">
+          <div className="grid gap-[11.2px] mt-[8.8px] pl-2">
             {childNodes.map((child) => (
               <button
                 key={child.id}
                 type="button"
-                className="relevant-experiences-modal__child-card"
+                className="rem-clbd flex items-start justify-between gap-4 w-full px-4 py-[15.2px] text-left text-inherit"
                 onClick={() => onSelectNode(child.id)}
               >
-                <div className="relevant-experiences-modal__child-card-copy">
-                  <h4 className="relevant-experiences-modal__child-card-title">
+                <div className="min-w-0 flex-1">
+                  <h4 className="text-[rgb(var(--base-color)/0.95)] text-[15.2px] font-bold leading-[1.35]">
                     {child.title}
                   </h4>
-                  <p className="relevant-experiences-modal__child-card-details">
+                  <p className="mt-[5.6px] text-[rgb(var(--base-color)/0.74)] text-[13.12px] leading-[1.6]">
                     {child.details}
                   </p>
                   {child.previewTags && child.previewTags.length > 0 && (
-                    <div className="relevant-experiences-modal__child-card-tags">
+                    <div className="flex flex-wrap gap-[5.6px] mt-[8.8px]">
                       {child.previewTags.map((tag) => (
-                        <span key={tag} className="relevant-experiences-card__tag">
+                        <span key={tag} className="rec-td min-h-[24.8px] px-[9.92px] pt-[3.52px] pb-[2.88px] text-[11.52px] tracking-[0.12px]">
                           {tag}
                         </span>
                       ))}
                     </div>
                   )}
                 </div>
-                <span className="relevant-experiences-modal__child-card-hint">
+                <span className="shrink-0 mt-[1.28px] text-[rgb(var(--base-color)/0.56)] text-[11.52px] tracking-[0.08em] uppercase">
                   Open
                 </span>
               </button>
@@ -172,22 +172,22 @@ function ChildModalBody({ node }: { node: RelevantExperienceNode }) {
   const isBounce = node.logoAnimation === 'bounce';
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="f-col gap-6">
       {node.image && (
-        <section className="relevant-experiences-modal__section">
+        <section className="rem-sc">
           <GlassCard
             width="w-full"
             corner="rounded-[3px]"
             shadow=""
-            className="overflow-hidden relevant-experiences-modal__media"
+            className="overflow-hidden rem-mwd"
           >
             {isBounce ? (
-              <BouncingLogoDisplay src={`${import.meta.env.BASE_URL}${node.image}`} alt={node.title} />
+              <BouncingLogoDisplay src={`${import.meta.env.BASE_URL}${node.image}`} alt={node.title} logoClassName="rem-dla" />
             ) : (
               <img
                 src={`${import.meta.env.BASE_URL}${node.image}`}
                 alt={node.title}
-                className="relevant-experiences-modal__image"
+                className="block w-full h-auto"
                 loading="lazy"
                 draggable={false}
               />
@@ -197,26 +197,27 @@ function ChildModalBody({ node }: { node: RelevantExperienceNode }) {
       )}
 
       {node.companyDescription && (
-        <section className="relevant-experiences-modal__section">
-          <div className="relevant-experiences-modal__section-header">
-            <p className="relevant-experiences-modal__label">About the Company</p>
+        <section className="rem-sc">
+          <div className="f-y-center gap-[7.2px]">
+            <p className="m-0 text-[rgb(var(--base-color)/0.56)] text-[11.52px] font-semibold tracking-[0.08em] uppercase">About the Company</p>
           </div>
-          <p className="relevant-experiences-modal__desc">{node.companyDescription}</p>
+          <p className="mt-[9.6px] pl-2 text-[rgb(var(--base-color)/0.84)] text-[15.68px] leading-[1.78] tracking-[0.08px]">{node.companyDescription}</p>
         </section>
       )}
 
-      <div className="relevant-experiences-modal__content-grid">
+      <div className="grid grid-cols-1 gap-5
+       md:grid-cols-2 md:gap-6">
         {node.modalWhatIDid && node.modalWhatIDid.length > 0 && (
-          <section className="relevant-experiences-modal__section flex flex-col h-full">
-            <div className="relevant-experiences-modal__section-header">
-              <p className="relevant-experiences-modal__label">What I Did</p>
+          <section className="rem-sc f-col h-full">
+            <div className="f-y-center gap-[7.2px]">
+              <p className="m-0 text-[rgb(var(--base-color)/0.56)] text-[11.52px] font-semibold tracking-[0.08em] uppercase">What I Did</p>
             </div>
-            <div className="relevant-experiences-modal__list-box flex-1">
-              <ul className="relevant-experiences-modal__list" aria-label={`What I did in ${node.title}`}>
+            <div className="mt-[7.2px] ml-2 pl-0 flex-1">
+              <ul className="list-none pl-0 space-y-[4.48px]" aria-label={`What I did in ${node.title}`}>
                 {node.modalWhatIDid.map((item, idx) => (
-                  <li key={idx} className="relevant-experiences-modal__list-item">
-                    <span className="relevant-experiences-modal__list-bullet">&bull;</span>
-                    <span className="relevant-experiences-modal__list-text">{item}</span>
+                  <li key={idx} className="flex gap-[6.72px] items-start">
+                    <span className="shrink-0 mt-[0.32px] text-[rgb(var(--base-color)/0.7)] text-base leading-[1.5]">&bull;</span>
+                    <span className="flex-1 min-w-0 text-[rgb(var(--base-color)/0.86)] text-[15.36px] font-normal leading-[1.72] tracking-[0.1px]">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -225,22 +226,22 @@ function ChildModalBody({ node }: { node: RelevantExperienceNode }) {
         )}
 
         {node.keyContentTitle && node.keyContent && (
-          <section className="relevant-experiences-modal__section flex flex-col h-full">
-            <div className="relevant-experiences-modal__section-header">
-              <p className="relevant-experiences-modal__label">{node.keyContentTitle}</p>
+          <section className="rem-sc f-col h-full">
+            <div className="f-y-center gap-[7.2px]">
+              <p className="m-0 text-[rgb(var(--base-color)/0.56)] text-[11.52px] font-semibold tracking-[0.08em] uppercase">{node.keyContentTitle}</p>
             </div>
-            <div className="relevant-experiences-modal__list-box flex-1">
+            <div className="mt-[7.2px] ml-2 pl-0 flex-1">
               {Array.isArray(node.keyContent) ? (
-                <ul className="relevant-experiences-modal__list" aria-label={`${node.keyContentTitle} of ${node.title}`}>
+                <ul className="list-none pl-0 space-y-[4.48px]" aria-label={`${node.keyContentTitle} of ${node.title}`}>
                   {node.keyContent.map((item, idx) => (
-                    <li key={idx} className="relevant-experiences-modal__list-item">
-                      <span className="relevant-experiences-modal__list-bullet">&bull;</span>
-                      <span className="relevant-experiences-modal__list-text">{item}</span>
+                    <li key={idx} className="flex gap-[6.72px] items-start">
+                      <span className="shrink-0 mt-[0.32px] text-[rgb(var(--base-color)/0.7)] text-base leading-[1.5]">&bull;</span>
+                      <span className="flex-1 min-w-0 text-[rgb(var(--base-color)/0.86)] text-[15.36px] font-normal leading-[1.72] tracking-[0.1px]">{item}</span>
                     </li>
                   ))}
                 </ul>
               ) : (
-                <p className="relevant-experiences-modal__takeaway">{node.keyContent}</p>
+                <p className="mt-[9.6px] pl-2 text-[rgb(var(--base-color)/0.84)] text-[15.68px] leading-[1.78] tracking-[0.08px]">{node.keyContent}</p>
               )}
             </div>
           </section>
@@ -248,13 +249,13 @@ function ChildModalBody({ node }: { node: RelevantExperienceNode }) {
       </div>
 
       {node.modalTags && node.modalTags.length > 0 && (
-        <section className="relevant-experiences-modal__section">
-          <div className="relevant-experiences-modal__section-header">
-            <p className="relevant-experiences-modal__label">Tags</p>
+        <section className="rem-sc">
+          <div className="f-y-center gap-[7.2px]">
+            <p className="m-0 text-[rgb(var(--base-color)/0.56)] text-[11.52px] font-semibold tracking-[0.08em] uppercase">Tags</p>
           </div>
-          <div className="relevant-experiences-modal__tags">
+          <div className="flex flex-wrap gap-[5.6px] mt-[7.2px] ml-2">
             {node.modalTags.map((tag) => (
-              <span key={tag} className="relevant-experiences-card__tag">
+              <span key={tag} className="rec-td min-h-[24.8px] px-[9.92px] pt-[3.52px] pb-[2.88px] text-[11.52px] tracking-[0.12px]">
                 {tag}
               </span>
             ))}
@@ -281,27 +282,32 @@ function RelevantExperienceModal({
     <ModalOverlay
       isOpen={!!node}
       onClose={onClose}
-      backdrop={<div className="relevant-experiences-modal__backdrop" />}
+      backdrop={<div className="rem-od absolute inset-0" />}
     >
-      <div className="relevant-experiences-modal" onClick={onClose}>
+      <div
+        className="fixed inset-0 z-[140] f-xy-center overflow-hidden overscroll-contain
+         p-4 md:p-6"
+        onClick={onClose}
+      >
         <div
           ref={scrollRef}
-          className="relevant-experiences-modal__dialog text-[17px] leading-snug"
+          className="rem-dd relative z-[1] flex flex-col w-full max-h-[min(88vh,928px)] mx-auto overflow-hidden text-[17px] leading-snug
+           min-[400px]:max-w-[360px] min-[480px]:max-w-[440px] sm:max-w-[576px] md:max-w-[760px] lg:max-w-[930px] xl:max-w-[930px]"
           onClick={(e) => e.stopPropagation()}
         >
           <div>
-            <div className="relevant-experiences-modal__header">
-              <div className="relevant-experiences-modal__header-copy">
-                <h3 className="relevant-experiences-modal__title font-anta">
+            <div className="rem-hd sticky top-0 z-10 flex items-end justify-between gap-4 w-full px-4 md:px-[22.4px] pt-[22.4px] pb-4">
+              <div className="min-w-0 pt-[4px]">
+                <h3 className="font-anta m-0 text-[20px] md:text-[24.8px] leading-[1.15] tracking-[0.2px]">
                   {node.title}
                 </h3>
                 {node.subtitle && (
-                  <p className="relevant-experiences-modal__subtitle">{node.subtitle}</p>
+                  <p className="mt-[5.6px] text-[rgb(var(--base-color)/0.62)] text-[13.12px] leading-[1.45] tracking-[0.06em] uppercase">{node.subtitle}</p>
                 )}
               </div>
               <button
                 type="button"
-                className="group relevant-experiences-modal__close"
+                className="group rem-cbd"
                 aria-label="Close modal"
                 onClick={onClose}
               >
@@ -309,7 +315,7 @@ function RelevantExperienceModal({
               </button>
             </div>
 
-            <div className="relevant-experiences-modal__body">
+            <div className="rem-bsc flex-auto min-h-0 overflow-y-auto p-4 md:p-[22.4px]">
               {isParentNode ? (
                 <ParentModalBody
                   node={node}
@@ -420,12 +426,15 @@ export default function RelevantExperiences() {
 
   return (
     <>
-      <section className="grid-background gb--bottom-border gb--top-border relative z-10 text-[rgb(247,247,217)]">
+      <section className="grid-background gb--bottom-border gb--top-border relative z-10">
         <div className="f-col-y-center min-h-screen content-width py-24">
           <div className="text-center w-full">
-            <h2 className="font-anta relevant-experiences-intro__title text-center">Relevant Experiences</h2>
+            <h2 className="font-anta re-tt text-center leading-[50px] tracking-[0.2px] 
+             text-[45px] sm:text-[47px] md:text-[55px] 
+             mt-[22px] sm:mt-[26px] md:mt-0 
+             mb-[30px] sm:mb-[40px] md:mb-[60px]">Relevant Experiences</h2>
           </div>
-          <div ref={laneRef} className="relevant-experiences-map w-full mt-10">
+          <div ref={laneRef} className="relative w-full mt-10">
             {layoutMode === 'desktop' ? (
               <div
                 style={{
@@ -452,7 +461,7 @@ export default function RelevantExperiences() {
                   {nodes.map((node) => (
                     <div
                       key={node.id}
-                      className={`relevant-experiences-card relevant-experiences-card--${node.type} relevant-experiences-card--interactive`}
+                      className="rec-hw absolute z-10 overflow-visible box-border cursor-pointer"
                       style={{
                         left: `${node.layout.x}px`,
                         top: `${node.layout.y}px`,
@@ -475,13 +484,13 @@ export default function RelevantExperiences() {
                 </div>
               </div>
             ) : (
-              <div className="relevant-experiences-responsive relevant-experiences-responsive--linear">
+              <div className="f-col re-lm max-md:gap-[80px]">
                 {parentNodes.map((parent) => {
                   const children = childNodesByParentId.get(parent.id) ?? [];
                   return (
-                    <section key={parent.id} className="relevant-experiences-group">
+                    <section key={parent.id} className="re-gn relative">
                       <div
-                        className="relevant-experiences-group__parent relevant-experiences-card-shell relevant-experiences-card-shell--interactive"
+                        className="rec-hw relative z-[1] overflow-visible box-border cursor-pointer w-full max-w-none min-h-full"
                         role="button"
                         tabIndex={0}
                         aria-label={`${parent.title} card`}
@@ -491,11 +500,11 @@ export default function RelevantExperiences() {
                         <ParentCardContent parent={parent} />
                       </div>
                       {children.length > 0 && (
-                        <div className="relevant-experiences-group__children relevant-experiences-group__children--linear">
+                        <div className="grid grid-cols-1 gap-10 mt-10">
                           {children.map((child) => (
                             <div
                               key={child.id}
-                              className="relevant-experiences-responsive-card relevant-experiences-responsive-card--child relevant-experiences-card-shell relevant-experiences-card-shell--interactive"
+                              className="re-cn rec-hw relative z-[1] overflow-visible box-border cursor-pointer w-full min-w-0"
                               role="button"
                               tabIndex={0}
                               aria-label={`${child.title} card`}

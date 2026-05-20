@@ -77,7 +77,7 @@
 @layer components{
     /* #region Content Width per Breakpoint */
     .content-width {
-        @apply mx-auto;
+        @apply mx-auto px-3 sm:px-0;
 
         /* Base (mobile first) */
         max-width: 360px;

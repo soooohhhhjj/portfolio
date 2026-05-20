@@ -82,12 +82,12 @@ export default function BouncingLogoDisplay({
   }, []);
 
   return (
-    <div ref={shellRef} className={`relevant-experiences-modal__dvd-shell ${className ?? ''}`}>
+    <div ref={shellRef} className={`relative w-full min-h-[248px] overflow-hidden ${className ?? ''}`}>
       <img
         ref={logoRef}
         src={src}
         alt={alt}
-        className={`relevant-experiences-modal__dvd-logo ${logoClassName ?? ''}`}
+        className={`block w-[clamp(96px,28%,160px)] h-auto ${logoClassName ?? ''}`}
         loading="lazy"
         draggable={false}
       />

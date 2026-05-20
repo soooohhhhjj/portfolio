@@ -24,7 +24,7 @@ export default function App() {
   const { welcomeVisible, contentVisible, introDone, starMode, handleWelcomeDone } = useIntroSequence();
 
   return (
-    <div className="f-col gap-6 px-3 sm:px-0 overflow-x-hidden">
+    <div className="f-col gap-6 overflow-x-hidden">
       <StarfieldBackground mode={starMode} />
 
       <AnimatePresence>
