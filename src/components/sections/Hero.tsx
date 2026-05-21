@@ -69,7 +69,13 @@ const heroCards: HeroCard[] = [
       Icon: BugOff },
 ];
 
-export default function Hero({ contentVisible = false }: { contentVisible?: boolean }) {
+export default function Hero({
+    contentVisible = false,
+    onResumeClick,
+}: {
+    contentVisible?: boolean;
+    onResumeClick?: () => void;
+}) {
     const animate = contentVisible ? 'visible' : 'hidden';
 
     return (
@@ -146,6 +152,10 @@ export default function Hero({ contentVisible = false }: { contentVisible?: bool
                                     animate={animate}
                                     transition={getIconTransition(i)}
                                     className="hi-lc md:h-[calc(var(--hero-action-icon-size)+10px)]"
+                                    onClick={label === 'Resume' ? (e) => {
+                                        e.preventDefault();
+                                        onResumeClick?.();
+                                    } : undefined}
                                 >
                                     <Icon className="hi-lc-icon" />
                                     <span className="hi-lc-label lg:text-sm">{label}</span>
