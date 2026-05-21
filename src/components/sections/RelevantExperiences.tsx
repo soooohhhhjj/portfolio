@@ -117,21 +117,21 @@ function ParentModalBody({
     <div className="f-col gap-6">
       <section className="rem-sc rem-sc--pi pb-4">
         <div className="f-y-center gap-[7.2px]">
-          <p className="m-0 ml-[4px] text-[rgb(var(--base-color)/0.96)] text-[13.12px] font-bold tracking-[0.05em] uppercase">
+          <p className="m-0 text-[rgb(var(--base-color)/0.96)] text-[13.12px] font-bold tracking-[0.05em] uppercase">
             Overview
           </p>
         </div>
-        <p className="mt-[9.6px] pl-2 text-[rgb(var(--base-color)/0.84)] text-[15.68px] leading-[1.78] tracking-[0.08px]">{node.details}</p>
+        <p className="mt-[9.6px] text-[rgb(var(--base-color)/0.84)] text-[15.68px] leading-[1.78] tracking-[0.08px]">{node.details}</p>
       </section>
 
       <section className="rem-sc">
         <div className="f-y-center gap-[7.2px]">
-          <p className="m-0 ml-[4px] text-[rgb(var(--base-color)/0.96)] text-[13.12px] font-bold tracking-[0.05em] uppercase">
+          <p className="m-0 text-[rgb(var(--base-color)/0.96)] text-[13.12px] font-bold tracking-[0.05em] uppercase">
             Included Work
           </p>
         </div>
         {childNodes.length > 0 && (
-          <div className="grid gap-[11.2px] mt-[8.8px] pl-2">
+          <div className="grid gap-[11.2px] mt-[8.8px]">
             {childNodes.map((child) => (
               <button
                 key={child.id}
