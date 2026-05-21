@@ -89,7 +89,7 @@ export default function Hero({
                             width="max-w-full md:max-w-[260px] lg:max-w-[320px]"
                             corner="rounded-[7px]"
                             shadow="shadow-[0_0_30px_rgba(255,255,255,0.15)]"
-                            className="overflow-hidden max-h-[395px] sm:max-h-[580px]"
+                            className="overflow-hidden max-h-[380px] sm:max-h-[580px]"
                         >
                             <img
                                 src={`${import.meta.env.BASE_URL}hero-pic/grad-pic.jpg`}
@@ -105,7 +105,7 @@ export default function Hero({
                         <motion.p
                             variants={slideUp} initial="hidden" animate={animate} transition={transitions.name}
                             className="hero-name-text font-semibold 
-                             text-[14px] sm:text-[18px] md:text-[14px] lg:text-[17px] 
+                             text-[13px] sm:text-[18px] md:text-[14px] lg:text-[17px] 
                              tracking-[.4px] sm:tracking-[1.5px]"
                         >
                             Hi, I&apos;m Carlo Joshua B. Abellera, and I enjoy
@@ -117,7 +117,7 @@ export default function Hero({
                             className="inline-block font-anta font-extrabold 
                              mt-3 sm:mt-4 md:mt-2
                              leading-[50px] sm:leading-[75px] md:leading-[64px] lg:leading-[78px] tracking-tight
-                             text-[38px] sm:text-[61px] md:text-[47px] lg:text-[61px]"
+                             text-[35px] sm:text-[61px] md:text-[47px] lg:text-[61px]"
                         >
                             <span className="hero-big-text">Building pixel-perfect</span>
                             <br />
@@ -129,14 +129,14 @@ export default function Hero({
                             variants={slideUp} initial="hidden" animate={animate} transition={transitions.role}
                             className="hero-role-text font-bruno font-[500] tracking-[1px]
                             mt-10 md:mt-9 lg:mt-10
-                            text-[19px] sm:text-[25px] md:text-[22px] lg:text-[26px]"
+                            text-[18px] sm:text-[25px] md:text-[22px] lg:text-[26px]"
                         >
                             Full-Stack Developer
                         </motion.p>
 
                         {/* Hero Call-to-Action Links Container */}
                         <div className="hi-mc md:justify-start
-                         mt-4 sm:mt-7 md:mt-4 lg:mt-6
+                         mt-[22px] sm:mt-7 md:mt-4 lg:mt-6
                          [--hero-action-icon-size:21px] 
                          md:[--hero-action-icon-size:18px]
                          lg:[--hero-action-icon-size:22px]">
