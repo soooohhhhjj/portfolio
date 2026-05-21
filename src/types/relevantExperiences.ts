@@ -17,7 +17,6 @@ export type RelevantExperienceNode = {
   title: string;
   subtitle?: string;
   details: string;
-  modalWhatIDid?: string[];
   previewTags?: string[];
   modalTags?: string[];
   image?: string;
@@ -25,8 +24,17 @@ export type RelevantExperienceNode = {
   layout: RelevantExperienceNodeLayout;
   logoAnimation?: 'bounce' | 'static';
   companyDescription?: string;
-  keyContentTitle?: string;
-  keyContent?: string | string[];
+  
+  // Custom structured content fields for new modal blueprint:
+  overviewText?: string;       // 1-2 sentence overview/intro
+  whatILearned?: string[];     // NCII
+  keyTakeaways?: string[];     // NCII
+  whatIDid?: string[];         // Internship
+  whatIGained?: string[];      // Internship
+  problemText?: string;        // Projects ("The Problem")
+  solutionBullets?: string[];  // Projects ("The Solution")
+  myRoleBullets?: string[];    // Projects ("My Role" - bullets)
+  myRoleText?: string;         // Projects ("My Role" - simple text)
 };
 
 export type RelevantExperienceConnectionPoint = {

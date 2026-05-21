@@ -208,6 +208,53 @@
   box-shadow:
     0 28px 80px rgba(0, 0, 0, 0.48),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  position: relative;
+}
+
+/* Sci-fi tech corners for the modal dialog box */
+.rem-dd::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  pointer-events: none;
+  z-index: 100;
+  border-radius: inherit;
+  background:
+    linear-gradient(rgb(var(--base-color)), rgb(var(--base-color))) top left no-repeat,
+    linear-gradient(rgb(var(--base-color)), rgb(var(--base-color))) top left no-repeat,
+    linear-gradient(rgb(var(--base-color)), rgb(var(--base-color))) top right no-repeat,
+    linear-gradient(rgb(var(--base-color)), rgb(var(--base-color))) top right no-repeat,
+    linear-gradient(rgb(var(--base-color)), rgb(var(--base-color))) bottom left no-repeat,
+    linear-gradient(rgb(var(--base-color)), rgb(var(--base-color))) bottom left no-repeat,
+    linear-gradient(rgb(var(--base-color)), rgb(var(--base-color))) bottom right no-repeat,
+    linear-gradient(rgb(var(--base-color)), rgb(var(--base-color))) bottom right no-repeat;
+  background-size:
+    30px 1px,
+    1px 30px,
+    30px 1px,
+    1px 30px,
+    30px 1px,
+    1px 30px,
+    30px 1px,
+    1px 30px;
+  opacity: 0.85;
+}
+
+.rem-glow-tag {
+  transition: all 220ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.rem-glow-tag:hover {
+  border-color: rgb(var(--base-color) / 0.42) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 
+    0 0 10px rgb(var(--base-color) / 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+  color: rgb(var(--base-color)) !important;
+  transform: translateY(-1px);
+}
+
+.rem-hmtd{
+  -webkit-text-stroke: .1px;
 }
 
 .rem-hd { /* rem-hd is short for Relevant Experiences Modal Header Design */

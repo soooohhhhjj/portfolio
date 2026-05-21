@@ -4,7 +4,7 @@ import { BriefcaseBusiness, FolderKanban } from 'lucide-react';
 import { AnimatedCloseIcon } from '../ui/AnimatedCloseIcon';
 import { GlassCard } from '../ui/GlassCard';
 import { ModalOverlay } from '../ui/ModalOverlay';
-import { useModalLenis } from '../../hooks/useModalLenis';
+import { lenis as globalLenis } from '../../lib/lenis';
 import { relevantExperiencesContentData } from '../../data/relevantExperiencesData';
 import type {
   RelevantExperienceNode,
@@ -168,100 +168,193 @@ function ParentModalBody({
   );
 }
 
+function TechBullet() {
+  return (
+    <svg 
+      className="shrink-0 mt-[5.5px] w-[11.2px] h-[11.2px] text-[rgb(var(--base-color)/0.8)] filter drop-shadow-[0_0_2px_rgb(var(--base-color)/0.5)]" 
+      viewBox="0 0 100 100" 
+      fill="currentColor"
+    >
+      <polygon points="20,10 80,50 20,90 45,50" />
+    </svg>
+  );
+}
+
 function ChildModalBody({ node }: { node: RelevantExperienceNode }) {
   const isBounce = node.logoAnimation === 'bounce';
+  const isDevProject = node.parentId === 'dev-academic-projects';
 
   return (
-    <div className="f-col gap-6">
-      {node.image && (
-        <section className="rem-sc">
-          <GlassCard
-            width="w-full"
-            corner="rounded-[3px]"
-            shadow=""
-            className="overflow-hidden rem-mwd"
-          >
-            {isBounce ? (
-              <BouncingLogoDisplay src={`${import.meta.env.BASE_URL}${node.image}`} alt={node.title} logoClassName="rem-dla" />
-            ) : (
-              <img
-                src={`${import.meta.env.BASE_URL}${node.image}`}
-                alt={node.title}
-                className="block w-full h-auto"
-                loading="lazy"
-                draggable={false}
-              />
-            )}
-          </GlassCard>
-        </section>
-      )}
-
-      {node.companyDescription && (
-        <section className="rem-sc">
-          <div className="f-y-center gap-[7.2px]">
-            <p className="m-0 text-[rgb(var(--base-color)/0.56)] text-[11.52px] font-semibold tracking-[0.08em] uppercase">About the Company</p>
-          </div>
-          <p className="mt-[9.6px] pl-2 text-[rgb(var(--base-color)/0.84)] text-[15.68px] leading-[1.78] tracking-[0.08px]">{node.companyDescription}</p>
-        </section>
-      )}
-
-      <div className="grid grid-cols-1 gap-5
-       md:grid-cols-2 md:gap-6">
-        {node.modalWhatIDid && node.modalWhatIDid.length > 0 && (
-          <section className="rem-sc f-col h-full">
-            <div className="f-y-center gap-[7.2px]">
-              <p className="m-0 text-[rgb(var(--base-color)/0.56)] text-[11.52px] font-semibold tracking-[0.08em] uppercase">What I Did</p>
-            </div>
-            <div className="mt-[7.2px] ml-2 pl-0 flex-1">
-              <ul className="list-none pl-0 space-y-[4.48px]" aria-label={`What I did in ${node.title}`}>
-                {node.modalWhatIDid.map((item, idx) => (
-                  <li key={idx} className="flex gap-[6.72px] items-start">
-                    <span className="shrink-0 mt-[0.32px] text-[rgb(var(--base-color)/0.7)] text-base leading-[1.5]">&bull;</span>
-                    <span className="flex-1 min-w-0 text-[rgb(var(--base-color)/0.86)] text-[15.36px] font-normal leading-[1.72] tracking-[0.1px]">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </section>
-        )}
-
-        {node.keyContentTitle && node.keyContent && (
-          <section className="rem-sc f-col h-full">
-            <div className="f-y-center gap-[7.2px]">
-              <p className="m-0 text-[rgb(var(--base-color)/0.56)] text-[11.52px] font-semibold tracking-[0.08em] uppercase">{node.keyContentTitle}</p>
-            </div>
-            <div className="mt-[7.2px] ml-2 pl-0 flex-1">
-              {Array.isArray(node.keyContent) ? (
-                <ul className="list-none pl-0 space-y-[4.48px]" aria-label={`${node.keyContentTitle} of ${node.title}`}>
-                  {node.keyContent.map((item, idx) => (
-                    <li key={idx} className="flex gap-[6.72px] items-start">
-                      <span className="shrink-0 mt-[0.32px] text-[rgb(var(--base-color)/0.7)] text-base leading-[1.5]">&bull;</span>
-                      <span className="flex-1 min-w-0 text-[rgb(var(--base-color)/0.86)] text-[15.36px] font-normal leading-[1.72] tracking-[0.1px]">{item}</span>
-                    </li>
-                  ))}
-                </ul>
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+      {/* Left Column - Sidebar (Logo, Meta, Tags) */}
+      <aside className="lg:col-span-4 f-col gap-5 lg:border-r lg:border-dashed lg:border-[rgb(var(--base-color)/0.15)] lg:pr-6">
+        {node.image && (
+          <section className="rem-sc">
+            <GlassCard
+              width="w-full"
+              corner="rounded-[3px]"
+              shadow=""
+              className="overflow-hidden rem-mwd border-[rgb(var(--base-color)/0.18)]"
+            >
+              {isBounce ? (
+                <BouncingLogoDisplay src={`${import.meta.env.BASE_URL}${node.image}`} alt={node.title} logoClassName="rem-dla" />
               ) : (
-                <p className="mt-[9.6px] pl-2 text-[rgb(var(--base-color)/0.84)] text-[15.68px] leading-[1.78] tracking-[0.08px]">{node.keyContent}</p>
+                <img
+                  src={`${import.meta.env.BASE_URL}${node.image}`}
+                  alt={node.title}
+                  className="block w-full h-auto"
+                  loading="lazy"
+                  draggable={false}
+                />
               )}
+            </GlassCard>
+          </section>
+        )}
+
+        {node.companyDescription && (
+          <section className="rem-sc bg-[rgb(var(--base-color)/0.02)] p-4 rounded-[4px] border border-[rgb(var(--base-color)/0.06)]">
+            <div className="f-y-center gap-[7.2px]">
+              <p className="m-0 text-[rgb(var(--base-color)/0.56)] text-[11.52px] font-semibold tracking-[0.08em] uppercase">About the Company</p>
+            </div>
+            <p className="mt-[9.6px] text-[rgb(var(--base-color)/0.84)] text-[14.08px] leading-[1.65] tracking-[0.05px]">{node.companyDescription}</p>
+          </section>
+        )}
+
+        {node.modalTags && node.modalTags.length > 0 && (
+          <section className="rem-sc">
+            <div className="f-y-center gap-[7.2px]">
+              <p className="m-0 text-[rgb(var(--base-color)/0.56)] text-[11.52px] font-semibold tracking-[0.08em] uppercase">
+                {!isDevProject ? 'Skills' : 'Technologies'}
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-[5.6px] mt-[8px]">
+              {node.modalTags.map((tag) => (
+                <span key={tag} className="rec-td rem-glow-tag min-h-[24.8px] px-[9.92px] pt-[3.52px] pb-[2.88px] text-[11.52px] tracking-[0.12px]">
+                  {tag}
+                </span>
+              ))}
             </div>
           </section>
         )}
-      </div>
+      </aside>
 
-      {node.modalTags && node.modalTags.length > 0 && (
-        <section className="rem-sc">
-          <div className="f-y-center gap-[7.2px]">
-            <p className="m-0 text-[rgb(var(--base-color)/0.56)] text-[11.52px] font-semibold tracking-[0.08em] uppercase">Tags</p>
-          </div>
-          <div className="flex flex-wrap gap-[5.6px] mt-[7.2px] ml-2">
-            {node.modalTags.map((tag) => (
-              <span key={tag} className="rec-td min-h-[24.8px] px-[9.92px] pt-[3.52px] pb-[2.88px] text-[11.52px] tracking-[0.12px]">
-                {tag}
-              </span>
-            ))}
-          </div>
-        </section>
-      )}
+      {/* Right Column - Main Details (Dynamic based on blueprint) */}
+      <main className="lg:col-span-8 f-col gap-6">
+        {/* Academic Projects Blueprint */}
+        {isDevProject ? (
+          <>
+            {/* The Problem */}
+            {node.problemText && (
+              <section className="rem-sc f-col bg-[rgb(var(--base-color)/0.015)] p-[18px] md:p-[22px] rounded-[6px] border border-[rgb(var(--base-color)/0.06)]">
+                <div className="f-y-center gap-[7.2px] border-b border-dashed border-[rgb(var(--base-color)/0.12)] pb-2 mb-[12px]">
+                  <p className="m-0 text-[rgb(var(--base-color)/0.88)] text-[12.16px] font-bold tracking-[0.1em] uppercase">The Problem</p>
+                </div>
+                <p className="m-0 text-[rgb(var(--base-color)/0.84)] text-[14.72px] leading-[1.68] tracking-[0.05px]">{node.problemText}</p>
+              </section>
+            )}
+
+            {/* The Solution */}
+            {node.solutionBullets && node.solutionBullets.length > 0 && (
+              <section className="rem-sc f-col bg-[rgb(var(--base-color)/0.02)] p-[18px] md:p-[22px] rounded-[6px] border border-[rgb(var(--base-color)/0.08)]">
+                <div className="f-y-center gap-[7.2px] border-b border-dashed border-[rgb(var(--base-color)/0.12)] pb-2 mb-[12px]">
+                  <p className="m-0 text-[rgb(var(--base-color)/0.88)] text-[12.16px] font-bold tracking-[0.1em] uppercase">The Solution</p>
+                </div>
+                <div className="flex-1">
+                  <ul className="list-none pl-0 space-y-[8px]" aria-label="The solution key features">
+                    {node.solutionBullets.map((item, idx) => (
+                      <li key={idx} className="flex gap-[10px] items-start">
+                        <TechBullet />
+                        <span className="flex-1 min-w-0 text-[rgb(var(--base-color)/0.86)] text-[14.72px] font-normal leading-[1.65] tracking-[0.05px]">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </section>
+            )}
+
+            {/* My Role */}
+            {(node.myRoleBullets || node.myRoleText) && (
+              <section className="rem-sc f-col bg-[rgb(var(--base-color)/0.03)] p-[18px] md:p-[22px] rounded-[6px] border border-[rgb(var(--base-color)/0.1)]">
+                <div className="f-y-center gap-[7.2px] border-b border-dashed border-[rgb(var(--base-color)/0.12)] pb-2 mb-[12px]">
+                  <p className="m-0 text-[rgb(var(--base-color)/0.88)] text-[12.16px] font-bold tracking-[0.1em] uppercase">My Role</p>
+                </div>
+                <div className="flex-1">
+                  {node.myRoleBullets && node.myRoleBullets.length > 0 ? (
+                    <ul className="list-none pl-0 space-y-[8px]" aria-label="My role details">
+                      {node.myRoleBullets.map((item, idx) => (
+                        <li key={idx} className="flex gap-[10px] items-start">
+                          <TechBullet />
+                          <span className="flex-1 min-w-0 text-[rgb(var(--base-color)/0.86)] text-[14.72px] font-normal leading-[1.65] tracking-[0.05px]">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <div className="flex gap-[10px] items-start">
+                      <TechBullet />
+                      <p className="m-0 flex-1 text-[rgb(var(--base-color)/0.84)] text-[14.72px] leading-[1.65] tracking-[0.05px]">{node.myRoleText}</p>
+                    </div>
+                  )}
+                </div>
+              </section>
+            )}
+          </>
+        ) : (
+          /* Technical Support Blueprint (NCII / Internship) */
+          <>
+            {/* Overview */}
+            {node.overviewText && (
+              <section className="rem-sc f-col bg-[rgb(var(--base-color)/0.015)] p-[18px] md:p-[22px] rounded-[6px] border border-[rgb(var(--base-color)/0.06)]">
+                <div className="f-y-center gap-[7.2px] border-b border-dashed border-[rgb(var(--base-color)/0.12)] pb-2 mb-[12px]">
+                  <p className="m-0 text-[rgb(var(--base-color)/0.88)] text-[12.16px] font-bold tracking-[0.1em] uppercase">Overview</p>
+                </div>
+                <p className="m-0 text-[rgb(var(--base-color)/0.84)] text-[14.72px] leading-[1.68] tracking-[0.05px]">{node.overviewText}</p>
+              </section>
+            )}
+
+            {/* What I Learned (NCII) / What I Did (Internship) */}
+            {((node.whatILearned && node.whatILearned.length > 0) || (node.whatIDid && node.whatIDid.length > 0)) && (
+              <section className="rem-sc f-col bg-[rgb(var(--base-color)/0.02)] p-[18px] md:p-[22px] rounded-[6px] border border-[rgb(var(--base-color)/0.08)]">
+                <div className="f-y-center gap-[7.2px] border-b border-dashed border-[rgb(var(--base-color)/0.12)] pb-2 mb-[12px]">
+                  <p className="m-0 text-[rgb(var(--base-color)/0.88)] text-[12.16px] font-bold tracking-[0.1em] uppercase">
+                    {node.id === 'nc2-certificate' ? 'What I Learned' : 'What I Did'}
+                  </p>
+                </div>
+                <div className="flex-1">
+                  <ul className="list-none pl-0 space-y-[8px]" aria-label={node.id === 'nc2-certificate' ? 'What I learned' : 'What I did'}>
+                    {(node.whatILearned || node.whatIDid)?.map((item, idx) => (
+                      <li key={idx} className="flex gap-[10px] items-start">
+                        <TechBullet />
+                        <span className="flex-1 min-w-0 text-[rgb(var(--base-color)/0.86)] text-[14.72px] font-normal leading-[1.65] tracking-[0.05px]">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </section>
+            )}
+
+            {/* Key Takeaways (NCII) / What I Gained (Internship) */}
+            {((node.keyTakeaways && node.keyTakeaways.length > 0) || (node.whatIGained && node.whatIGained.length > 0)) && (
+              <section className="rem-sc f-col bg-[rgb(var(--base-color)/0.03)] p-[18px] md:p-[22px] rounded-[6px] border border-[rgb(var(--base-color)/0.1)]">
+                <div className="f-y-center gap-[7.2px] border-b border-dashed border-[rgb(var(--base-color)/0.12)] pb-2 mb-[12px]">
+                  <p className="m-0 text-[rgb(var(--base-color)/0.88)] text-[12.16px] font-bold tracking-[0.1em] uppercase">
+                    {node.id === 'nc2-certificate' ? 'Key Takeaways' : 'What I Gained'}
+                  </p>
+                </div>
+                <div className="flex-1">
+                  <ul className="list-none pl-0 space-y-[8px]" aria-label={node.id === 'nc2-certificate' ? 'Key takeaways' : 'What I gained'}>
+                    {(node.keyTakeaways || node.whatIGained)?.map((item, idx) => (
+                      <li key={idx} className="flex gap-[10px] items-start">
+                        <TechBullet />
+                        <span className="flex-1 min-w-0 text-[rgb(var(--base-color)/0.86)] text-[14.72px] font-normal leading-[1.65] tracking-[0.05px]">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </section>
+            )}
+          </>
+        )}
+      </main>
     </div>
   );
 }
@@ -272,17 +365,35 @@ function RelevantExperienceModal({
   onSelectNode,
   onClose,
 }: RelevantExperienceModalProps) {
-  const scrollRef = useModalLenis(!!node);
+  const [activeNode, setActiveNode] = useState<RelevantExperienceNode | null>(null);
+  const [activeChildNodes, setActiveChildNodes] = useState<RelevantExperienceNode[]>([]);
 
-  if (!node) return null;
+  useEffect(() => {
+    if (node) {
+      setActiveNode(node);
+      setActiveChildNodes(childNodes);
+    }
+  }, [node, childNodes]);
 
-  const isParentNode = node.type === 'parent';
+  useEffect(() => {
+    if (node) {
+      globalLenis.stop();
+      return () => {
+        globalLenis.start();
+      };
+    }
+  }, [node]);
+
+  if (!activeNode) return null;
+
+  const isParentNode = activeNode.type === 'parent';
 
   return (
     <ModalOverlay
       isOpen={!!node}
       onClose={onClose}
       backdrop={<div className="rem-od absolute inset-0" />}
+      variant="fade"
     >
       <div
         className="fixed inset-0 z-[140] f-xy-center overflow-hidden overscroll-contain
@@ -290,41 +401,56 @@ function RelevantExperienceModal({
         onClick={onClose}
       >
         <div
-          ref={scrollRef}
-          className="rem-dd relative z-[1] flex flex-col w-full max-h-[min(88vh,928px)] mx-auto overflow-hidden text-[17px] leading-snug
-           min-[400px]:max-w-[360px] min-[480px]:max-w-[440px] sm:max-w-[576px] md:max-w-[760px] lg:max-w-[930px] xl:max-w-[930px]"
+          className="rem-dd content-width relative z-[1] f-col w-full max-h-[min(88vh,928px)] overflow-visible leading-snug"
           onClick={(e) => e.stopPropagation()}
         >
-          <div>
-            <div className="rem-hd sticky top-0 z-10 flex items-end justify-between gap-4 w-full px-4 md:px-[22.4px] pt-[22.4px] pb-4">
-              <div className="min-w-0 pt-[4px]">
-                <h3 className="font-anta m-0 text-[20px] md:text-[24.8px] leading-[1.15] tracking-[0.2px]">
-                  {node.title}
-                </h3>
-                {node.subtitle && (
-                  <p className="mt-[5.6px] text-[rgb(var(--base-color)/0.62)] text-[13.12px] leading-[1.45] tracking-[0.06em] uppercase">{node.subtitle}</p>
-                )}
-              </div>
+          <div className={`rem-hd sticky top-0 z-10 f-y-center justify-between w-full px-4 sm:px-5 ${isParentNode ? 'py-4 sm:py-5' : 'py-4 sm:py-5'}`}>
+            <div className="min-w-0 mr-10">
+              <h3 className="font-anta my-[2px] tracking-[1px] rem-hmtd
+               text-[25px] md:text-[30px]">
+                {activeNode.title}
+              </h3>
+              {activeNode.subtitle && (
+                <p className="text-[rgb(var(--base-color)/0.62)] tracking-[1px] uppercase 
+                 text-[12px] md:text-[13px]">{activeNode.subtitle}</p>
+              )}
+            </div>
+            <button
+              type="button"
+              className="group rem-cbd shrink-0 hidden sm:inline-flex"
+              aria-label="Close modal"
+              onClick={onClose}
+            >
+              <AnimatedCloseIcon size={25} strokeWidth={1.5} />
+            </button>
+          </div>
+
+          <div 
+            data-lenis-prevent
+            className="rem-bsc flex-auto min-h-0 overflow-y-auto p-4 sm:p-5"
+          >
+            {isParentNode ? (
+              <ParentModalBody
+                node={activeNode}
+                childNodes={activeChildNodes}
+                onSelectNode={onSelectNode}
+              />
+            ) : (
+              <ChildModalBody node={activeNode} />
+            )}
+
+            {/* Mobile bottom close button */}
+            <div className="mt-6 sm:hidden">
               <button
                 type="button"
-                className="group rem-cbd"
-                aria-label="Close modal"
+                className="w-full py-3.5 rounded-[4px] border border-dashed border-[rgb(var(--base-color)/0.3)] 
+                  bg-[rgb(var(--base-color)/0.03)] hover:bg-[rgb(var(--base-color)/0.08)]
+                  text-[rgb(var(--base-color)/0.85)] font-anta tracking-[4px] text-center text-[12px]
+                  cursor-pointer transition-all duration-200 uppercase"
                 onClick={onClose}
               >
-                <AnimatedCloseIcon size={18} strokeWidth={1.8} />
+                Close Details
               </button>
-            </div>
-
-            <div className="rem-bsc flex-auto min-h-0 overflow-y-auto p-4 md:p-[22.4px]">
-              {isParentNode ? (
-                <ParentModalBody
-                  node={node}
-                  childNodes={childNodes}
-                  onSelectNode={onSelectNode}
-                />
-              ) : (
-                <ChildModalBody node={node} />
-              )}
             </div>
           </div>
         </div>
@@ -525,7 +651,6 @@ export default function RelevantExperiences() {
         </div>
       </section>
       <RelevantExperienceModal
-        key={modalNodeId ?? 'closed'}
         node={modalNode}
         childNodes={childNodesForModal}
         onSelectNode={setModalNodeId}
