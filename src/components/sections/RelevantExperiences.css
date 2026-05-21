@@ -275,10 +275,25 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 0;
-  background: transparent;
-  color: inherit;
+  width: 2.25rem;
+  height: 2.25rem;
+  flex-shrink: 0;
+  border: 1px solid rgb(var(--base-color) / 0.14);
+  border-radius: 2px;
+  background: rgb(var(--base-color) / 0.03);
+  color: rgb(var(--base-color) / 0.8);
   cursor: pointer;
+  transition:
+    background 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+}
+
+.rem-cbd:hover,
+.rem-cbd:focus-visible {
+  border-color: rgb(var(--base-color) / 0.28);
+  background: rgb(var(--base-color) / 0.07);
+  color: rgb(var(--base-color));
 }
 
 .rem-sc--pi { /* rem-sc--pi is short for Relevant Experiences Modal Section Container Parent Intro */
