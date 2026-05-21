@@ -41,19 +41,20 @@ export default function App() {
 
       <div className="f-col gap-6">
         <Navbar introDone={introDone} contentVisible={contentVisible} />
-        <main className="f-col gap-6">
+        <main className="f-col 
+         gap-32 md:gap-24 lg:gap-32">
           <Hero contentVisible={contentVisible} />
           <motion.div
             initial={{ y: '100vh' }}
             animate={{ y: contentVisible ? 0 : '100vh' }}
-            transition={slideTransitionWithDuration(1.2)}
+            transition={slideTransitionWithDuration(2)}
           >
             <RelevantExperiences />
           </motion.div>
           <motion.div
             initial={{ y: '100vh' }}
             animate={{ y: contentVisible ? 0 : '100vh' }}
-            transition={slideTransitionWithDuration(1.3)}
+            transition={slideTransitionWithDuration(2.05)}
           >
             <SkillsNTools />
           </motion.div>
@@ -61,7 +62,7 @@ export default function App() {
         <motion.div
           initial={{ y: '100vh' }}
           animate={{ y: contentVisible ? 0 : '100vh' }}
-          transition={slideTransitionWithDuration(1.4)}
+          transition={slideTransitionWithDuration(2.1)}
         >
           <Footer />
         </motion.div>

@@ -368,12 +368,10 @@ function RelevantExperienceModal({
   const [activeNode, setActiveNode] = useState<RelevantExperienceNode | null>(null);
   const [activeChildNodes, setActiveChildNodes] = useState<RelevantExperienceNode[]>([]);
 
-  useEffect(() => {
-    if (node) {
-      setActiveNode(node);
-      setActiveChildNodes(childNodes);
-    }
-  }, [node, childNodes]);
+  if (node && node !== activeNode) {
+    setActiveNode(node);
+    setActiveChildNodes(childNodes);
+  }
 
   useEffect(() => {
     if (node) {
